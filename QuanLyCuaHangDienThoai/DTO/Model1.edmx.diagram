@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7d987d01d139422ba934f076e4b67db9" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.CA_LAM_VIEC" Width="1.5" PointX="3.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.CHI_TIET_HOA_DON" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.CHI_TIET_SAN_PHAM" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.HOA_DON" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.LICH_SU_NHAN_VIEN" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.LICH_SU_SAN_PHAM" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.LUONG" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.NHAN_VIEN" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.PHAN_CA" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.SAN_PHAM" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_QUAN_LY_SHOP_DIEN_THOAIModel.sysdiagrams" Width="1.5" PointX="8.25" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_PHAN_CA_CA_LAM_VIEC" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_CHI_TIET_HOA_DON_HOA_DON" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_CHI_TIET_HOA_DON_SAN_PHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_SAN_PHAM_CHI_TIET_SAN_PHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_HOA_DON_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_LICH_SU_NHAN_VIEN_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_LICH_SU_NHAN_VIEN_NHAN_VIEN_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_LICH_SU_SAN_PHAM_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_LICH_SU_SAN_PHAM_SAN_PHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_LUONG_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_QUAN_LY_SHOP_DIEN_THOAIModel.FK_PHAN_CA_NHAN_VIEN" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
