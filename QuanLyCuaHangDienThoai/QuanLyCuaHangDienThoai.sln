@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyCuaHangDienThoai", "QuanLyCuaHangDienThoai\QuanLyCuaHangDienThoai.csproj", "{DED8078F-128C-496A-BEB8-1624337A273F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyCuaHangDienThoai", "QuanLyCuaHangDienThoai\QuanLyCuaHangDienThoai.csproj", "{272F7C68-A64E-45C6-BB50-59B5D0FD85E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DED8078F-128C-496A-BEB8-1624337A273F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DED8078F-128C-496A-BEB8-1624337A273F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DED8078F-128C-496A-BEB8-1624337A273F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DED8078F-128C-496A-BEB8-1624337A273F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{272F7C68-A64E-45C6-BB50-59B5D0FD85E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272F7C68-A64E-45C6-BB50-59B5D0FD85E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272F7C68-A64E-45C6-BB50-59B5D0FD85E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272F7C68-A64E-45C6-BB50-59B5D0FD85E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
