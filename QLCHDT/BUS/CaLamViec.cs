@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyCuaHangDienThoai
+namespace BUS
 {
-	class Class1
+	class CaLamViec
 	{
-		//SayHello
 	}
 }
