@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cbe1853d33404ff9b97c3128c2c42377" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.CA_LAM_VIEC" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CHI_TIET_HOA_DON" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CHI_TIET_SAN_PHAM" Width="1.5" PointX="0.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DOI_TAC_NHAP_HANG" Width="1.5" PointX="8.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HANG_SAN_XUAT" Width="2.375" PointX="0.625" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HOA_DON" PointX="2.875" PointY="6.25" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LICH_SU_NHAN_VIEN" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LICH_SU_SAN_PHAM" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LUONG" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NHAN_VIEN" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PHAN_CA" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SAN_PHAM" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_PHAN_CA_CA_LAM_VIEC" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="Model.FK_CHI_TIET_HOA_DON_HOA_DON" />
+        <AssociationConnector Association="Model.FK_CHI_TIET_HOA_DON_SAN_PHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SAN_PHAM_CHI_TIET_SAN_PHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DOI_TAC_NHAP_HANG_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="Model.FK_HOA_DON_NHAN_VIEN" />
+        <AssociationConnector Association="Model.FK_LICH_SU_NHAN_VIEN_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LICH_SU_NHAN_VIEN_NHAN_VIEN_1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LICH_SU_SAN_PHAM_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LICH_SU_SAN_PHAM_SAN_PHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LUONG_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PHAN_CA_NHAN_VIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HOA_DON_DOI_TAC_NHAP_HANG" />
+        <AssociationConnector Association="Model.FK_CHI_TIET_SAN_PHAM_HANG_SAN_XUAT" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

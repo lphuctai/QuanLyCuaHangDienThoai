@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLCHDT", "QLCHDT\QLCHDT.csproj", "{AA79B109-D51A-4E05-B8CE-6754E5D11B82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO", "DAO\DAO.csproj", "{E45C3ED7-916A-4665-8CAB-25F5883E1907}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUS", "BUS\BUS.csproj", "{25B56BC2-4128-430C-84A6-A4F279A348DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA79B109-D51A-4E05-B8CE-6754E5D11B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA79B109-D51A-4E05-B8CE-6754E5D11B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA79B109-D51A-4E05-B8CE-6754E5D11B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA79B109-D51A-4E05-B8CE-6754E5D11B82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45C3ED7-916A-4665-8CAB-25F5883E1907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45C3ED7-916A-4665-8CAB-25F5883E1907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45C3ED7-916A-4665-8CAB-25F5883E1907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45C3ED7-916A-4665-8CAB-25F5883E1907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25B56BC2-4128-430C-84A6-A4F279A348DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25B56BC2-4128-430C-84A6-A4F279A348DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25B56BC2-4128-430C-84A6-A4F279A348DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25B56BC2-4128-430C-84A6-A4F279A348DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
