@@ -1,4 +1,4 @@
-﻿namespace QLCHDT
+﻿namespace QLCHDT.Cong
 {
 	partial class FormChamCong
 	{
@@ -47,14 +47,13 @@
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.ClientSize = new System.Drawing.Size(382, 180);
 			this.Controls.Add(this.flowLayoutPanel1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "FormChamCong";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "FormChamCong";
 			this.Load += new System.EventHandler(this.FormChamCong_Load);
 			this.ResumeLayout(false);
 
-			this.flowLayoutPanel1.Controls.Add(new PanelCong());
         }
 
 		#endregion

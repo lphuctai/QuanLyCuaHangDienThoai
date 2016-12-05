@@ -7,26 +7,37 @@ using System.Threading.Tasks;
 
 namespace BUS.BusSanPham
 {
-	class HangSanXuat
+	public class HangSanXuat
 	{
-		private string hang;
 
 		public HangSanXuat(HANG_SAN_XUAT hsx)
 		{
-			this.hang = hsx.HANG;
+			this.MaHang = hsx.MA_HANG;
+            this.Hang = hsx.HANG;
 		}
+
+		public HangSanXuat(string hang)
+		{
+			this.MaHang = 0;
+			this.Hang = hang;
+		}
+
+		public static bool ThemHangSanXuat(HangSanXuat hsx)
+		{
+			HANG_SAN_XUAT.insert((HANG_SAN_XUAT)Util.AdapterObjectToDB(hsx));
+            return true;
+		}
+
+		// Lay Tat Ca chua lam vi chưa tìm được cấu trúc dữ liệu thích hợp
 
 		public string Hang
 		{
-			get
-			{
-				return hang;
-			}
+			get; set;
+		}
 
-			set
-			{
-				hang = value;
-			}
+		public int MaHang
+		{
+			get; set;
 		}
 	}
 }

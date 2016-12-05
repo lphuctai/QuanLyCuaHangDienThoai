@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using BUS.BusPhanCa;
+using BUS.BusSanPham;
 
 namespace BUS.BusNhanVien
 {
@@ -16,39 +18,43 @@ namespace BUS.BusNhanVien
 		}
 
 		//	Create New Employee
-		public static bool ThemNhanVien(NhanVien nvThem)
+		public bool ThemNhanVien(NhanVien nv, string ghiChu)
 		{
-			if (Init.nhanVien.GetType() != typeof(QuanLy))
-				return false;
-			bool result = true;
-			NHAN_VIEN tmp = (NHAN_VIEN)Util.AdapterObjectToDB(nvThem);
-			EntityConnect.getConnection().NHAN_VIEN.Add(tmp);
-			result &= (EntityConnect.SaveChange() == 1);
-			EntityConnect.getConnection().LICH_SU_NHAN_VIEN.Add((LICH_SU_NHAN_VIEN)Util.AdapterObjectToDB
-				(new LichSuNhanVien(NhanVien.NhanVienFactory(tmp), DateTime.Now, 0, Init.nhanVien, "Add New Employee")));
-			result &= (EntityConnect.SaveChange() == 1);
-			return result;
+			NHAN_VIEN tmp = (NHAN_VIEN)Util.AdapterObjectToDB(nv);
+			NHAN_VIEN.insert(tmp);
+			nv.MSNV = tmp.MSNV;
+			LichSuNhanVien.ThemNhanVien(nv, ghiChu);
+			return true;
 		}
 
 		//	Employee leave
-		public static bool NhanVienNghiViec(NhanVien nvNghiViec)
+		public bool SaThaiNhanVien(NhanVien nv, string ghiChu)
 		{
-			if (Init.nhanVien.GetType() != typeof(QuanLy))
-				return false;
-			bool result = true;
-			NHAN_VIEN tmp = (NHAN_VIEN)Util.AdapterObjectToDB(nvNghiViec);
-			EntityConnect.Update(tmp);
-			result &= (EntityConnect.SaveChange() == 1);
-			return result;
+			LichSuNhanVien.SaThaiNhanVien(nv, ghiChu);
+			nv.TrangThai = 0;
+			NHAN_VIEN.update((NHAN_VIEN)Util.AdapterObjectToDB(nv));
+			return true;
+		}
+		
+		public bool ThemCaLamViec(PhanCa pc)
+		{
+			return PhanCa.ThemCaLamViec(pc);
+		}
+
+		public bool XacNhanCaLamViec(PhanCa pc)
+		{
+			return PhanCa.XacNhanCaLamViec(pc);
+		}
+
+		public bool XoaCaLamViec(PhanCa pc)
+		{
+			return PhanCa.XoaCaLamViec(pc);
 		}
 
 		//	Not Finish
-		public static bool NhapHang(/*DienThoai dt*/)
+		public bool ThemChiTietSanPham(ChiTietSanPham ctsp)
 		{
-			if (Init.nhanVien.GetType() != typeof(QuanLy))
-				return false;
-			return false;
+			return ChiTietSanPham.ThemChiTietSanPham(ctsp);
 		}
-
 	}
 }

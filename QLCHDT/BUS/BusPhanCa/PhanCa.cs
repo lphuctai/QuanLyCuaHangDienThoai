@@ -10,58 +10,84 @@ namespace BUS.BusPhanCa
 {
 	public class PhanCa
 	{
-		protected int msnv, ca;
-		protected bool chamCong, xacNhanCong;
-		protected DateTime thoiGian;
 
 		public PhanCa(PHAN_CA pc)
 		{
-			this.ca = pc.CA;
-			this.msnv = pc.MSNV;
-			this.chamCong = pc.CHAM_CONG;
-			this.xacNhanCong = pc.XAC_NHAN_CONG;
-			this.thoiGian = pc.THOI_GIAN;
+			Ca = pc.CA;
+			MSNV = pc.MSNV;
+			ChamCong = pc.CHAM_CONG;
+			XacNhanCong = pc.XAC_NHAN_CONG;
+			ThoiGian = pc.THOI_GIAN;
 		}
 
 		//	Add Shift
 		public static bool ThemCaLamViec(PhanCa pc)
 		{
-			EntityConnect.getConnection().PHAN_CA.Add((PHAN_CA)Util.AdapterObjectToDB(pc));
-			return EntityConnect.SaveChange() == 1;
+			PHAN_CA.insert((PHAN_CA)Util.AdapterObjectToDB(pc));
+			return true;
 		}
 
 		//	Timekeeping
 		public static bool ChamCongHangNgay(PhanCa pc)
 		{
 			//Cham Cong
-			pc.ChamCong = true;
-			EntityConnect.Update((PHAN_CA)Util.AdapterObjectToDB(pc));
-			return EntityConnect.SaveChange() == 1;
+			PHAN_CA tmp = (PHAN_CA)Util.AdapterObjectToDB(pc);
+			tmp.CHAM_CONG = true;
+			Console.WriteLine(tmp.MSNV + " " + tmp.THOI_GIAN.Date + " " + tmp.CA + " " + tmp.CHAM_CONG + " " + tmp.XAC_NHAN_CONG);
+			PHAN_CA.update(tmp);
+            return true;
 		}
 
 		//	Confrim Shift
 		public static bool XacNhanCaLamViec(PhanCa pc)
 		{
 			pc.XacNhanCong = true;
-			EntityConnect.Update((PHAN_CA)Util.AdapterObjectToDB(pc));
-			return EntityConnect.SaveChange() == 1;
+			PHAN_CA.update((PHAN_CA)Util.AdapterObjectToDB(pc));
+			return true;
 		}
 
 		//	Delete Shift
 		public static bool XoaCaLamViec(PhanCa pc)
 		{
-			EntityConnect.Delete((PHAN_CA)Util.AdapterObjectToDB(pc));
-			return EntityConnect.SaveChange() == 1;
+			PHAN_CA.delete(pc.MSNV, pc.ThoiGian, pc.Ca);
+			return true;
 		}
 
 		//	Get Shift
 		public static List<PhanCa> LayCaLamViec(NhanVien nv, DateTime thoiGianBatDau
 			, DateTime thoiGianKetThuc, bool chamCong, bool xacNhanCong)
 		{
-			List<PHAN_CA> tmp = (from i in EntityConnect.getConnection().PHAN_CA
-								 where i.MSNV == nv.MSNV && i.THOI_GIAN >= thoiGianBatDau
-										&& i.THOI_GIAN <= thoiGianKetThuc && i.CHAM_CONG == chamCong && i.XAC_NHAN_CONG == xacNhanCong
-								 select i).ToList<PHAN_CA>();
+			List<PHAN_CA> tmp = new List<PHAN_CA>(); ;
+			try
+			{
+				tmp = PHAN_CA.select(" where MSNV = " + nv.MSNV + " and THOI_GIAN >= '" + thoiGianBatDau.ToShortDateString() +
+										"' and THOI_GIAN <= '" + thoiGianKetThuc.ToShortDateString() + "' and CHAM_CONG = " + chamCong + " and XAC_NHAN_CONG = " + xacNhanCong + " ");
+			}
+			catch(Exception)
+			{
+				;
+			}
+			List<PhanCa> result = new List<PhanCa>();
+			for (int i = 0; i < tmp.Count; i++)
+				result.Add(new PhanCa(tmp[i]));
+			return result;
+		}
+
+		//	Get Shift
+		public static List<PhanCa> LayCaLamViec(NhanVien nv, DateTime thoiGianBatDau
+			, DateTime thoiGianKetThuc)
+		{
+			List<PHAN_CA> tmp = new List<PHAN_CA>(); ;
+				tmp = PHAN_CA.select(" where MSNV = " + nv.MSNV + " and THOI_GIAN >= '" + thoiGianBatDau.ToShortDateString() +
+										"' and THOI_GIAN <= '" + thoiGianKetThuc.ToShortDateString()  + "' ");
+			try
+			{
+				;
+			}
+			catch (Exception)
+			{
+				;
+			}
 			List<PhanCa> result = new List<PhanCa>();
 			for (int i = 0; i < tmp.Count; i++)
 				result.Add(new PhanCa(tmp[i]));
@@ -74,32 +100,27 @@ namespace BUS.BusPhanCa
 		//	Get/Set accessor
 		public int MSNV
 		{
-			get { return msnv; }
-			set { msnv = value; }
+			get; set;
 		}
 
 		public int Ca
 		{
-			get { return ca; }
-			set { ca = value; }
+			get; set;
 		}
 
 		public bool ChamCong
 		{
-			get { return chamCong; }
-			set { chamCong = value; }
+			get; set;
 		}
 
 		public bool XacNhanCong
 		{
-			get { return xacNhanCong; }
-			set { xacNhanCong = value; }
+			get; set;
 		}
 
 		public DateTime ThoiGian
 		{
-			get { return thoiGian; }
-			set { thoiGian = value; }
+			get; set;
 		}
 	}
 }

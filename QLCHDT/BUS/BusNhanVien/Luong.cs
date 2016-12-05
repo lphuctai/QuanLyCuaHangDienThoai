@@ -8,7 +8,7 @@ namespace BUS.BusNhanVien
 {
 	public class Luong
 	{
-		int msnv, luongThuong, tongGioCong, heSoLuong, tongThuong, xacNhanLuong;
+		int msnv, luongThuong, tongGioCong, heSoLuong, tongLuong, xacNhanLuong;
 		DateTime thoiGian;
 
 		//	Process Salary
@@ -54,10 +54,10 @@ namespace BUS.BusNhanVien
 			set { heSoLuong = value; }
 		}
 
-		public int TongThuong
+		public int TongLuong
 		{
-			get { return tongThuong; }
-			set { tongThuong = value; }
+			get { return tongLuong; }
+			set { tongLuong = value; }
 		}
 		
 		public int XacNhanLuong

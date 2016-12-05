@@ -1,4 +1,5 @@
-﻿using DAO;
+﻿using BUS.BusPhanCa;
+using DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +10,17 @@ namespace BUS.BusNhanVien
 {
 	public abstract class NhanVien
 	{
-		protected int msnv, trangThai;
-		protected string hoTen, cmnd, soDienThoai, matKhau;
-		protected DateTime ngaySinh, ngayVaoLam;
-		
 		//	Convert DB to Object
 		protected NhanVien(NHAN_VIEN nv)
 		{
-			msnv = nv.MSNV;
-			hoTen = nv.HO_TEN;
-			cmnd = nv.CMND;
-			trangThai = Convert.ToInt32(nv.TRANG_THAI);
-			soDienThoai = nv.SO_DIEN_THOAI;
-			matKhau = nv.MAT_KHAU;
-			ngaySinh = Convert.ToDateTime(nv.NGAY_SINH);
-			ngayVaoLam = Convert.ToDateTime(nv.NGAY_VAO_LAM);
+			MSNV = nv.MSNV;
+			HoTen = nv.HO_TEN;
+			CMND = nv.CMND;
+			TrangThai = Convert.ToInt32(nv.TRANG_THAI);
+			SoDienThoai = nv.SO_DIEN_THOAI;
+			MatKhau = nv.MAT_KHAU;
+			NgaySinh = Convert.ToDateTime(nv.NGAY_SINH);
+			NgayVaoLam = Convert.ToDateTime(nv.NGAY_VAO_LAM);
 		}
 
 		//	Get Position of Employee
@@ -62,63 +59,96 @@ namespace BUS.BusNhanVien
 		//	Change Infomation of Employee
 		public bool ThayDoiThongTin(NhanVien nv)
 		{
-			NhanVien nvCu = NhanVienFactory((from s in EntityConnect.getConnection().NHAN_VIEN
-											 where s.MSNV == nv.MSNV select s).FirstOrDefault<NHAN_VIEN>());
-			LichSuNhanVien.LuuLichSuNhanVien(nvCu, nv);
-			EntityConnect.Update((NHAN_VIEN)Util.AdapterObjectToDB(nv));
-			return EntityConnect.SaveChange() != 0;
+			if (Init.nhanVien.MSNV != nv.MSNV)
+				return false;
+			NhanVien nvCu;
+			try
+			{
+				nvCu = NhanVienFactory(NHAN_VIEN.select(" where MSNV = " + nv.MSNV)[0]);
+			}
+			catch(Exception)
+			{
+				return false;
+			}
+			LichSuNhanVien.ThayDoiThongTin(nvCu, nv);
+			NHAN_VIEN.update((NHAN_VIEN)Util.AdapterObjectToDB(nv));
+			return true;
 		}
 
+		//	Timekeeping
+		public static bool ChamCongHangNgay(PhanCa pc)
+		{
+			//Cham Cong
+			return PhanCa.ChamCongHangNgay(pc);
+		}
 
-
+		public static bool Login(string tenDangNhap, string matKhau)
+		{
+			int user = 0;
+			NHAN_VIEN tmp;
+			try
+			{
+				user = Convert.ToInt32(tenDangNhap);
+			}
+			catch (Exception)
+			{
+				user = 0;
+			}
+			try
+			{
+				tmp = NHAN_VIEN.select(" where MSNV = " + user)[0];
+			}
+			catch(Exception)
+			{
+				tmp = null;
+			}
+            if (tmp != null && tmp.MAT_KHAU == matKhau)
+			{
+				Init.nhanVien = NhanVien.NhanVienFactory(tmp);
+				return true;
+			}
+			return false;
+		}
 
 		//	Get/Set accessor
 		public int MSNV
 		{
-			get { return msnv; }
-			set { msnv = value; }
+			get; set;
 		}
 
 		public string HoTen
 		{
-			get { return hoTen; }
-			set { hoTen = value; }
+			get; set;
 		}
 
 		public string CMND
 		{
-			get { return cmnd; }
-			set { cmnd = value; }
+			get; set;
 		}
 
 		public DateTime NgaySinh
 		{
-			get { return ngaySinh; }
-			set { ngaySinh = value; }
+			get; set;
 		}
 
 		public string SoDienThoai
 		{
-			get { return soDienThoai; }
-			set { soDienThoai = value; }
+			get; set;
 		}
 
 		public string MatKhau
 		{
-			get { return matKhau; }
-			set { matKhau = value; }
+			get; set;
 		}
 
 		public DateTime NgayVaoLam
 		{
-			get { return ngayVaoLam; }
-			set { ngayVaoLam = value; }
+			get; set;
 		}
 
 		public int TrangThai
 		{
-			get { return trangThai; }
-			set { trangThai = value; }
+			get; set;
 		}
 	}
 }

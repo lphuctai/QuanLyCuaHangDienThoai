@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.BusHoaDon
 {
-	class ChiTietHoaDon
+	public class ChiTietHoaDon
 	{
 		private int maHoaDon, gia;
 		private string imei, ghiChu;
@@ -20,8 +20,17 @@ namespace BUS.BusHoaDon
 			this.ghiChu = cthd.GHI_CHU;
 		}
 
+		public static bool NhapHang(ChiTietHoaDon cthd)
+		{
+			CHI_TIET_HOA_DON.insert((CHI_TIET_HOA_DON)Util.AdapterObjectToDB(cthd));
+			return true;
+		}
 
-
+		public static bool XuatHang(ChiTietHoaDon cthd)
+		{
+			CHI_TIET_HOA_DON.insert((CHI_TIET_HOA_DON)Util.AdapterObjectToDB(cthd));
+			return true;
+		}
 
 
 
@@ -30,54 +39,22 @@ namespace BUS.BusHoaDon
 		//	Get/Set accessor
 		public int MaHoaDon
 		{
-			get
-			{
-				return maHoaDon;
-			}
-
-			set
-			{
-				maHoaDon = value;
-			}
+			get; set;
 		}
 
 		public int Gia
 		{
-			get
-			{
-				return gia;
-			}
-
-			set
-			{
-				gia = value;
-			}
+			get; set;
 		}
 
-		public string Imei
+		public string IMEI
 		{
-			get
-			{
-				return imei;
-			}
-
-			set
-			{
-				imei = value;
-			}
+			get; set;
 		}
 
 		public string GhiChu
 		{
-			get
-			{
-				return ghiChu;
-			}
-
-			set
-			{
-				ghiChu = value;
-			}
+			get; set;
 		}
 	}
 }

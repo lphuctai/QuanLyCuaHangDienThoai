@@ -9,49 +9,43 @@ namespace BUS.BusDoiTac
 {
 	public class DoiTacNhapHang
 	{
-		protected int maDoiTac, msnvQuanLy;
-		protected string thongTin, soDienThoai;
 
 		public static bool ThemDoiTac(DoiTacNhapHang dt)
 		{
-			EntityConnect.getConnection().DOI_TAC_NHAP_HANG.Add((DOI_TAC_NHAP_HANG)Util.AdapterObjectToDB(dt));
-			return EntityConnect.SaveChange() == 1;
+			DOI_TAC_NHAP_HANG.insert((DOI_TAC_NHAP_HANG)Util.AdapterObjectToDB(dt));
+			return true;
 		}
 
 		public static bool SuaDoiTac(DoiTacNhapHang dt)
 		{
-			EntityConnect.Update((DOI_TAC_NHAP_HANG)Util.AdapterObjectToDB(dt));
-			return EntityConnect.SaveChange() == 1;
+			DOI_TAC_NHAP_HANG.update((DOI_TAC_NHAP_HANG)Util.AdapterObjectToDB(dt));
+			return true;
 		}
 		
 		public static bool XoaDoiTac(DoiTacNhapHang dt)
 		{
-			EntityConnect.Delete((DOI_TAC_NHAP_HANG)Util.AdapterObjectToDB(dt));
-			return EntityConnect.SaveChange() == 1;
+			DOI_TAC_NHAP_HANG.delete(dt.MaDoiTac);
+			return true;
 		}
 
 		public int MaDoiTac
 		{
-			get { return maDoiTac; }
-			set { maDoiTac = value; }
+			get; set;
 		}
 
 		public int MSNVQuanLy
 		{
-			get { return msnvQuanLy; }
-			set { msnvQuanLy = value; }
+			get; set;
 		}
 
 		public string SoDienThoai
 		{
-			get { return soDienThoai; }
-			set { soDienThoai = value; }
+			get; set;
 		}
 
 		public string ThongTin
 		{
-			get { return thongTin; }
-			set { thongTin = value; }
+			get; set;
 		}
 	}
 }

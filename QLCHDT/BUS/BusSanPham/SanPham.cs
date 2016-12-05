@@ -7,78 +7,148 @@ using System.Threading.Tasks;
 
 namespace BUS.BusSanPham
 {
-	class SanPham
+	public class SanPham
 	{
-		private string imei, ghiChu;
-		private int maChiTietSanPham, trangThai, giaMua, giaBan;
-		private DateTime ngayBatDauBaoHanh, ngayKetThucBaoHanh;
+
+		public SanPham(string imei, int maChiTietSanPham)
+		{
+			IMEI = imei;
+			MaChiTietSanPham = maChiTietSanPham;
+			TrangThai = 0;
+		}
 
 		public SanPham(SAN_PHAM dt)
 		{
-			imei = dt.IMEI;
-			ghiChu = dt.GHI_CHU;
-			maChiTietSanPham = Convert.ToInt32(dt.MA_CHI_TIET_SAN_PHAM);
-			trangThai = dt.TRANG_THAI;
-			giaMua = dt.GIA_MUA;
-			giaBan = dt.GIA_BAN;
-			ngayBatDauBaoHanh = Convert.ToDateTime(dt.NGAY_BAT_DAU_BAO_HANH);
-			ngayKetThucBaoHanh = Convert.ToDateTime(dt.NGAY_KET_THUC_BAO_HANG);
+			IMEI = dt.IMEI;
+			GhiChu = dt.GHI_CHU;
+			MaChiTietSanPham = Convert.ToInt32(dt.MA_CHI_TIET_SAN_PHAM);
+			TrangThai = dt.TRANG_THAI;
+			GiaMua = Convert.ToInt32(dt.GIA_MUA);
+			GiaBan = Convert.ToInt32(dt.GIA_BAN);
+			NgayBatDauBaoHanh = Convert.ToDateTime(dt.NGAY_BAT_DAU_BAO_HANH);
+			NgayKetThucBaoHanh = Convert.ToDateTime(dt.NGAY_KET_THUC_BAO_HANG);
 		}
+
+		public bool ThayDoiGhiChu(string ghiChu)
+		{
+			this.GhiChu = ghiChu;
+			NHAN_VIEN.update((NHAN_VIEN)Util.AdapterObjectToDB(this));
+			return true;
+		}
+
+		public static bool ThanhToan(SanPham sp, string ghiChu)
+		{
+			if (sp.TrangThai == 1)
+				return false;
+			ChiTietSanPham ctsp;
+            try
+			{
+				ctsp = new ChiTietSanPham(CHI_TIET_SAN_PHAM.select(" where MA_CHI_TIET_SAN_PHAM = " + sp.MaChiTietSanPham)[0]);
+			}
+			catch(Exception)
+			{
+				return false;
+			}
+			SanPham tmp = sp;
+			// Doing
+			tmp.TrangThai = 1;
+			tmp.GhiChu = ghiChu;
+			tmp.GiaBan = ctsp.GiaBan;
+			tmp.GiaMua = ctsp.GiaMua;
+			tmp.NgayBatDauBaoHanh = DateTime.Now;
+			tmp.NgayKetThucBaoHanh = new DateTime(DateTime.Now.AddMonths(ctsp.ThoiGianBaoHanh).Year
+				, DateTime.Now.AddMonths(ctsp.ThoiGianBaoHanh).Month, DateTime.Now.Day);
+
+			LichSuSanPham.ThanhToan(sp, tmp);
+			if (ChiTietSanPham.ThanhToan(ctsp.MaChiTietSanPham) == false)
+			{
+				LichSuSanPham.ThanhToan(tmp, sp);
+				return false;
+			}
+			SAN_PHAM.update((SAN_PHAM)Util.AdapterObjectToDB(tmp));
+			return true;
+		}
+
+		public static bool ThemSanPham(SanPham sp)
+		{
+			SanPham tmp = new SanPham(sp.IMEI, sp.MaChiTietSanPham);
+			LichSuSanPham.ThemSanPham(tmp, sp.GhiChu);
+			SAN_PHAM.insert((SAN_PHAM)Util.AdapterObjectToDB(tmp));
+			return true;
+		}
+
+		public static bool GuiBaoHanh(SanPham sp)
+		{
+			if (sp.TrangThai == 0 || sp.TrangThai == 2)
+				return false;
+			sp.TrangThai = 2;
+			LichSuSanPham.GuiBaoHanh(sp);
+			SAN_PHAM.update((SAN_PHAM)Util.AdapterObjectToDB(sp));
+			return true;
+		}
+
+		public static bool NhanBaoHanh(SanPham sp)
+		{
+			if (sp.TrangThai == 0 || sp.TrangThai == 1)
+				return false;
+			sp.TrangThai = 1;
+			LichSuSanPham.NhanBaoHanh(sp);
+			SAN_PHAM.update((SAN_PHAM)Util.AdapterObjectToDB(sp));
+			return true;
+		}
+
+		public static SanPham LaySanPham(string imei)
+		{
+			try
+			{
+				return new SanPham(SAN_PHAM.select(" where IMEI = " + imei)[0]);
+			}
+			catch(Exception)
+			{
+				return null;
+			}
+		}
+
+
 		//	Get/Set accessor
 		public string GhiChu
 		{
-			get { return ghiChu; }
-
-			set { ghiChu = value; }
+			get; set;
 		}
 
 		public int GiaBan
 		{
-			get { return giaBan; }
-
-			set { giaBan = value; }
+			get; set;
 		}
 
 		public int GiaMua
 		{
-			get { return giaMua; }
-
-			set { giaMua = value; }
+			get; set;
 		}
 
 		public string IMEI
 		{
-			get { return imei; }
-
-			set { imei = value; }
+			get; set;
 		}
 
 		public int MaChiTietSanPham
 		{
-			get { return maChiTietSanPham; }
-
-			set { maChiTietSanPham = value; }
+			get; set;
 		}
 
-		public DateTime NgayBatDauBaoHanh1
+		public DateTime NgayBatDauBaoHanh
 		{
-			get { return ngayBatDauBaoHanh; }
-
-			set { ngayBatDauBaoHanh = value; }
+			get; set;
 		}
 
 		public DateTime NgayKetThucBaoHanh
 		{
-			get { return ngayKetThucBaoHanh; }
-
-			set { ngayKetThucBaoHanh = value; }
+			get; set;
 		}
 
 		public int TrangThai
 		{
-			get { return trangThai; }
-
-			set { trangThai = value; }
+			get; set;
 		}
 	}
 }

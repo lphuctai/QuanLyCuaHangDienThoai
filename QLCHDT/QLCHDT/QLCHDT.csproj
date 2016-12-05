@@ -52,10 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormChamCong.cs">
+    <Compile Include="Cong\FormChamCong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormChamCong.Designer.cs">
+    <Compile Include="Cong\FormChamCong.Designer.cs">
       <DependentUpon>FormChamCong.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
@@ -70,15 +70,27 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PanelCong.cs">
+    <Compile Include="Cong\PanelCong.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PanelCong.Designer.cs">
+    <Compile Include="Cong\PanelCong.Designer.cs">
       <DependentUpon>PanelCong.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormChamCong.resx">
+    <Compile Include="User\FormAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\FormAddUser.Designer.cs">
+      <DependentUpon>FormAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\FormSaThai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\FormSaThai.Designer.cs">
+      <DependentUpon>FormSaThai.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Cong\FormChamCong.resx">
       <DependentUpon>FormChamCong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
@@ -87,7 +99,7 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelCong.resx">
+    <EmbeddedResource Include="Cong\PanelCong.resx">
       <DependentUpon>PanelCong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -100,6 +112,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="User\FormAddUser.resx">
+      <DependentUpon>FormAddUser.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -129,6 +144,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnExit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnAddUser.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnAddUser.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

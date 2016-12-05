@@ -9,62 +9,57 @@ namespace BUS.BusNhanVien
 {
 	public class LichSuNhanVien
 	{
-		private int msnv, maLichSu, msnvThucHien;
-		private DateTime thoiGian;
-		private string ghiChu;
+		
+		public LichSuNhanVien(LICH_SU_NHAN_VIEN lsnv)
+		{
+			MSNV = lsnv.MSNV;
+			ThoiGian = lsnv.THOI_GIAN;
+			MaLichSu = lsnv.MA_LICH_SU;
+			MSNVThucHien = Convert.ToInt32(lsnv.MSNV_THUC_HIEN);
+			GhiChu = lsnv.GHI_CHU;
+		}
+
+		public LichSuNhanVien(NhanVien nv, int maLichSu, string ghiChu)
+		{
+			MSNV = nv.MSNV;
+			ThoiGian = DateTime.Now;
+			MaLichSu = maLichSu;
+			MSNVThucHien = Init.nhanVien.MSNV;
+			GhiChu = ghiChu;
+		}
 
 		public static List<LichSuNhanVien> LayLichSuNhanVien(NhanVien nv)
 		{
-			var lsnvdb = (from s in EntityConnect.getConnection().LICH_SU_NHAN_VIEN where s.MSNV == nv.MSNV select s).ToList<LICH_SU_NHAN_VIEN>();
+			List<LICH_SU_NHAN_VIEN> lsnvdb = LICH_SU_NHAN_VIEN.select(" where MSNV = " + nv.MSNV);
 			List<LichSuNhanVien> lsnv = new List<LichSuNhanVien>();
 			foreach (var i in lsnvdb)
 				lsnv.Add(new LichSuNhanVien(i));
 			return lsnv;
 		}
 
-		public LichSuNhanVien(NhanVien nv, DateTime thoiGian, int maLichSu, NhanVien nvThucHien, string ghiChu)
-		{
-			this.msnv = nv.MSNV;
-			this.thoiGian = thoiGian;
-			this.maLichSu = maLichSu;
-			this.msnvThucHien = nvThucHien.MSNV;
-			this.ghiChu = ghiChu;
-		}
-
-		public LichSuNhanVien(LICH_SU_NHAN_VIEN lsnv)
-		{
-			this.msnv = lsnv.MSNV;
-			this.thoiGian = lsnv.THOI_GIAN;
-			this.maLichSu = lsnv.MA_LICH_SU;
-			this.msnvThucHien = Convert.ToInt32(lsnv.MSNV_THUC_HIEN);
-			this.ghiChu = lsnv.GHI_CHU;
-		}
-		
-		public static bool LuuLichSuNhanVien(NhanVien nvCu, NhanVien nvMoi)
+		public static bool ThayDoiThongTin(NhanVien nvCu, NhanVien nvMoi)
 		{
 			List<LichSuNhanVien> log = new List<LichSuNhanVien>();
 			if (nvCu.HoTen != nvMoi.HoTen)
-				log.Add(new LichSuNhanVien(nvCu, DateTime.Now, 1, Init.nhanVien, nvCu.HoTen + " -> " + nvMoi.HoTen));
+				log.Add(new LichSuNhanVien(nvCu, 2, nvCu.HoTen + " -> " + nvMoi.HoTen));
 			if (nvCu.CMND != nvMoi.CMND)
-				log.Add(new LichSuNhanVien(nvCu, DateTime.Now, 2, Init.nhanVien, nvCu.CMND + " -> " + nvMoi.CMND));
+				log.Add(new LichSuNhanVien(nvCu, 3, nvCu.CMND + " -> " + nvMoi.CMND));
 			if (nvCu.NgaySinh != nvMoi.NgaySinh)
-				log.Add(new LichSuNhanVien(nvCu, DateTime.Now, 3, Init.nhanVien, nvCu.NgaySinh + " -> " + nvMoi.NgaySinh));
+				log.Add(new LichSuNhanVien(nvCu, 4, nvCu.NgaySinh + " -> " + nvMoi.NgaySinh));
 			if (nvCu.SoDienThoai != nvMoi.SoDienThoai)
-				log.Add(new LichSuNhanVien(nvCu, DateTime.Now, 4, Init.nhanVien, nvCu.SoDienThoai + " -> " + nvMoi.SoDienThoai));
+				log.Add(new LichSuNhanVien(nvCu, 5, nvCu.SoDienThoai + " -> " + nvMoi.SoDienThoai));
 			if (nvCu.GetType() != nvMoi.GetType())
-				log.Add(new LichSuNhanVien(nvCu, DateTime.Now, 5, Init.nhanVien, nvCu.GetType().ToString() + " -> " + nvMoi.GetType().ToString()));
+				log.Add(new LichSuNhanVien(nvCu, 6, nvCu.GetType().ToString() + " -> " + nvMoi.GetType().ToString()));
 			if (nvCu.MatKhau != nvMoi.MatKhau)
-				log.Add(new LichSuNhanVien(nvCu, DateTime.Now, 5, Init.nhanVien, "******** -> ********"));
+				log.Add(new LichSuNhanVien(nvCu, 7, "******** -> ********"));
 			if (nvCu.NgayVaoLam != nvMoi.NgayVaoLam)
-				log.Add(new LichSuNhanVien(nvCu, DateTime.Now, 6, Init.nhanVien, nvCu.NgayVaoLam + " -> " + nvMoi.NgayVaoLam));
-			if (nvCu.TrangThai != nvMoi.TrangThai)
-				log.Add(new LichSuNhanVien(nvCu, DateTime.Now, 7, Init.nhanVien, nvCu.TrangThai + " -> " + nvMoi.TrangThai));
+				log.Add(new LichSuNhanVien(nvCu, 8, nvCu.NgayVaoLam + " -> " + nvMoi.NgayVaoLam));
 			nvMoi.MSNV = nvCu.MSNV;
 			try
 			{
 				for (int i = 0; i < log.Count; i++)
 				{
-					EntityConnect.getConnection().LICH_SU_NHAN_VIEN.Add((LICH_SU_NHAN_VIEN)Util.AdapterObjectToDB(log[i]));
+					LICH_SU_NHAN_VIEN.insert((LICH_SU_NHAN_VIEN)Util.AdapterObjectToDB(log[i]));
 				}
 				return true;
 			}
@@ -74,42 +69,51 @@ namespace BUS.BusNhanVien
 			}
 		}
 
+		public static bool ThemNhanVien(NhanVien nv, string ghiChu)
+		{
+			LichSuNhanVien lsnv = new LichSuNhanVien(nv, 0, "Add Employee " + ghiChu);
+			LICH_SU_NHAN_VIEN.insert((LICH_SU_NHAN_VIEN)Util.AdapterObjectToDB(lsnv));
+			return true;
+		}
+
+		public static bool SaThaiNhanVien(NhanVien nv, string ghiChu)
+		{
+			LichSuNhanVien lsnv = new LichSuNhanVien(nv, -1, "Leave Out Employee " + ghiChu);
+			LICH_SU_NHAN_VIEN.insert((LICH_SU_NHAN_VIEN)Util.AdapterObjectToDB(lsnv));
+			return true;
+		}
+
 		public bool ThayDoiGhiChu(string ghiChu)
 		{
 			this.GhiChu = ghiChu;
-			EntityConnect.Update(this);
-			return EntityConnect.SaveChange() == 1;
+			LICH_SU_NHAN_VIEN.update((LICH_SU_NHAN_VIEN)Util.AdapterObjectToDB(this));
+			return true;
 		}
 
 		//	Get/Set accessor
 		public int MSNV
 		{
-			get { return msnv; }
-			set { msnv = value; }
+			get; set;
 		}
 
 		public int MaLichSu
 		{
-			get { return maLichSu; }
-			set { maLichSu = value; }
+			get; set;
 		}
 
 		public int MSNVThucHien
 		{
-			get { return msnvThucHien; }
-			set { msnvThucHien = value; }
+			get; set;
 		}
 
 		public DateTime ThoiGian
 		{
-			get { return thoiGian; }
-			set { thoiGian = value; }
+			get; set;
 		}
 
 		public string GhiChu
 		{
-			get { return ghiChu; }
-			set { ghiChu = value; }
+			get; set;
 		}
 
 	}
