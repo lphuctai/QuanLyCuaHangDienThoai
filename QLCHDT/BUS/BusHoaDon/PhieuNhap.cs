@@ -11,11 +11,9 @@ namespace BUS.BusHoaDon
 	public class PhieuNhap : HoaDon
 	{
 
-		public PhieuNhap(HOA_DON hd)
-			:base(hd)
+		public PhieuNhap()
+			:base()
 		{
-			TongCong = Convert.ToInt32(hd.TONG_CONG);
-			MaDoiTac = Convert.ToInt32(hd.MA_DOI_TAC);
 		}
 
 		public static int TaoPhieuNhap(int maDoiTac)
@@ -31,7 +29,7 @@ namespace BUS.BusHoaDon
 			return HOA_DON.insert(tmp);
         }
 
-		public static bool NhapHang(int maHoaDon, List<SanPham> sps, List<ChiTietHoaDon>cthds)
+		public static bool NhapHang(int maHoaDon, List<SAN_PHAM> sps, List<CHI_TIET_HOA_DON>cthds)
 		{
 			HOA_DON tmp;
 			try
@@ -46,24 +44,13 @@ namespace BUS.BusHoaDon
 			for(int i = 0; i < sps.Count; i ++)
 			{
 				SanPham.ThemSanPham(sps[i]);
-				cthds[i].MaHoaDon = tmp.MA_HOA_DON;
+				cthds[i].MA_HOA_DON = tmp.MA_HOA_DON;
 				ChiTietHoaDon.NhapHang(cthds[i]);
-				ChiTietSanPham.ThemSanPham(sps[i].MaChiTietSanPham);
-				tongCong += cthds[i].Gia;
+				ChiTietSanPham.ThemSanPham(sps[i].MA_CHI_TIET_SAN_PHAM);
+				tongCong += Convert.ToInt32(cthds[i].GIA);
 			}
 			HOA_DON.update(tmp);
 			return true;
-		}
-
-		//	Get/Set accessor
-		public int TongCong
-		{
-			get; set;
-		}
-
-		public int MaDoiTac
-		{
-			get; set;
 		}
 
 	}

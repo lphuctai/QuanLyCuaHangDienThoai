@@ -10,34 +10,14 @@ namespace BUS.BusSanPham
 	public class HangSanXuat
 	{
 
-		public HangSanXuat(HANG_SAN_XUAT hsx)
+		public HangSanXuat()
 		{
-			this.MaHang = hsx.MA_HANG;
-            this.Hang = hsx.HANG;
 		}
 
-		public HangSanXuat(string hang)
+		public static bool ThemHangSanXuat(HANG_SAN_XUAT hsx)
 		{
-			this.MaHang = 0;
-			this.Hang = hang;
-		}
-
-		public static bool ThemHangSanXuat(HangSanXuat hsx)
-		{
-			HANG_SAN_XUAT.insert((HANG_SAN_XUAT)Util.AdapterObjectToDB(hsx));
+			HANG_SAN_XUAT.insert(hsx);
             return true;
-		}
-
-		// Lay Tat Ca chua lam vi chưa tìm được cấu trúc dữ liệu thích hợp
-
-		public string Hang
-		{
-			get; set;
-		}
-
-		public int MaHang
-		{
-			get; set;
 		}
 	}
 }

@@ -21,6 +21,8 @@ namespace QLCHDT
 			{
 				AddButton("Chấm Công", FormChamCong.getIcon());
 				AddButton("Thêm NV", FormAddUser.getIcon());
+				AddButton("Xoá NV", FormSaThai.getIcon());
+				AddButton("Phân Ca", FormPhanCa.getIcon());
 			}
 		}
 
@@ -59,6 +61,13 @@ namespace QLCHDT
 				case "Thêm NV":
 					new FormAddUser().ShowDialog();
 					break;
+				case "Xoá NV":
+					new FormSaThai().ShowDialog();
+					break;
+				case "Phân Ca":
+					new FormPhanCa().ShowDialog();
+					break;
+
 			}
 		}
 	}

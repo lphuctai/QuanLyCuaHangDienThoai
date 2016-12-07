@@ -1,4 +1,5 @@
 ﻿using BUS.BusNhanVien;
+using DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,17 @@ namespace BUS
 {
 	public class Init
 	{
-		public static NhanVien nhanVien
+		private static NHAN_VIEN _nhanVien;
+		public static NHAN_VIEN nhanVien
 		{
-			get; set;
+			get
+			{
+				return _nhanVien;
+			}
+			set
+			{
+				_nhanVien = value;
+			}
 		}
 	}
 }

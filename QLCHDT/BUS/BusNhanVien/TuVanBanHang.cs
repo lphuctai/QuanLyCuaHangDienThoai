@@ -9,8 +9,8 @@ namespace BUS.BusNhanVien
 {
 	public class TuVanBanHang : NhanVien
 	{
-		public TuVanBanHang(NHAN_VIEN nv)
-			:base(nv)
+		public TuVanBanHang()
+			:base()
 		{
 		}
 	}

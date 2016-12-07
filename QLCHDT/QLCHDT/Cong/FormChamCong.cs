@@ -1,5 +1,6 @@
 ﻿using BUS;
 using BUS.BusPhanCa;
+using DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace QLCHDT.Cong
 		public FormChamCong()
 		{
 			InitializeComponent();
-			List<PhanCa> pcs = PhanCa.LayCaLamViec(Init.nhanVien, DateTime.Now, DateTime.Now);
+			List<PHAN_CA> pcs = PhanCa.LayCaLamViec(Init.nhanVien.MSNV, DateTime.Now);
 			Console.WriteLine(pcs.Count);
 			for (int i = 0; i < pcs.Count; i++)
 				flowLayoutPanel1.Controls.Add(new PanelCong(pcs[i]));

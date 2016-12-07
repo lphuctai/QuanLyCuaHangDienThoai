@@ -11,10 +11,9 @@ namespace BUS.BusHoaDon
 	public class BienNhan : HoaDon
 	{
 
-		public BienNhan(HOA_DON hd)
-			:base(hd)
+		public BienNhan()
+			:base()
 		{
-			ThongTinKhachHang = hd.THONG_TIN_KHACH_HANG;
 		}
 
 		public static int TaoBienNhan()
@@ -30,7 +29,7 @@ namespace BUS.BusHoaDon
 			return tmp.MA_HOA_DON;
 		}
 
-		private static bool GuiBaoHanh(int maHoaDon, SanPham sp, ChiTietHoaDon cthd)
+		private static bool GuiBaoHanh(int maHoaDon, SAN_PHAM sp, CHI_TIET_HOA_DON cthd)
 		{
 			//wrong
 			HOA_DON tmp;
@@ -42,7 +41,7 @@ namespace BUS.BusHoaDon
 			{
 				return false;
 			}
-			cthd.MaHoaDon = tmp.MA_HOA_DON;
+			cthd.MA_HOA_DON = tmp.MA_HOA_DON;
 			ChiTietHoaDon.NhapHang(cthd);
 			HOA_DON.update(tmp);
 			return true;
@@ -63,14 +62,6 @@ namespace BUS.BusHoaDon
 			HOA_DON.update(tmp);
 			return true;
 		}
-
-
-		//	Get/Set accessor
-		public string ThongTinKhachHang
-		{
-			get; set;
-		}
-
 	}
 }
 

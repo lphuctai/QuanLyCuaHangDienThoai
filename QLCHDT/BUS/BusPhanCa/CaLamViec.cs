@@ -9,38 +9,14 @@ namespace BUS.BusPhanCa
 {
 	public class CaLamViec
 	{
-		private int ca, gio;
 
-		public CaLamViec(CA_LAM_VIEC clv)
+		public CaLamViec()
 		{
-			this.ca = clv.CA;
-			this.gio = Convert.ToInt32(clv.GIO);
 		}
 
-		public int Ca
+		public static int LaySoLuongCa()
 		{
-			get
-			{
-				return ca;
-			}
-
-			set
-			{
-				ca = value;
-			}
-		}
-
-		public int Gio
-		{
-			get
-			{
-				return gio;
-			}
-
-			set
-			{
-				gio = value;
-			}
+			return CA_LAM_VIEC.select("").Count;
 		}
 	}
 }

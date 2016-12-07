@@ -10,54 +10,40 @@ namespace BUS.BusSanPham
 	public class LichSuSanPham
 	{
 
-		public LichSuSanPham(LICH_SU_SAN_PHAM lssp)
+		public LichSuSanPham()
 		{
-			IMEI = lssp.IMEI;
-			GhiChu = lssp.GHI_CHU;
-			ThoiGian = lssp.THOI_GIAN;
-			MaLichSu = lssp.MA_LICH_SU;
-			MSNVThucHien = Convert.ToInt32(lssp.MSNV_THUC_HIEN);
 		}
 
-		public LichSuSanPham(SanPham sp, int maLichSu, string ghiChu)
+		public static bool ThemSanPham(SAN_PHAM sp, string ghiChu)
 		{
-			this.IMEI = sp.IMEI;
-			this.MaLichSu = maLichSu;
-			this.GhiChu = ghiChu;
-			this.ThoiGian = DateTime.Now;
-			this.MSNVThucHien = Init.nhanVien.MSNV;
-		}
-
-		public static bool ThemSanPham(SanPham sp, string ghiChu)
-		{
-			LichSuSanPham lssp = new LichSuSanPham(sp, 0, "Add Product " + ghiChu);
-			LICH_SU_SAN_PHAM.insert((LICH_SU_SAN_PHAM)Util.AdapterObjectToDB(lssp));
+			LICH_SU_SAN_PHAM lssp = new LICH_SU_SAN_PHAM(sp, Init.nhanVien.MSNV, 0, "Add Product " + ghiChu);
+			LICH_SU_SAN_PHAM.insert(lssp);
 			return true;
 		}
 
-		public static bool ThanhToan(SanPham cu, SanPham moi)
+		public static bool ThanhToan(SAN_PHAM cu, SAN_PHAM moi)
 		{
-			List<LichSuSanPham> log = new List<LichSuSanPham>();
-			if (cu.MaChiTietSanPham != moi.MaChiTietSanPham)
-				log.Add(new LichSuSanPham(cu, 2, cu.MaChiTietSanPham + " -> " + moi.MaChiTietSanPham));
-			if (cu.NgayBatDauBaoHanh != moi.NgayBatDauBaoHanh)
-				log.Add(new LichSuSanPham(cu, 3, (cu.NgayBatDauBaoHanh != null? cu.NgayBatDauBaoHanh.ToString():"") + " -> " + moi.NgayBatDauBaoHanh));
-			if (cu.NgayKetThucBaoHanh != moi.NgayKetThucBaoHanh)
-				log.Add(new LichSuSanPham(cu, 4, (cu.NgayKetThucBaoHanh != null ? cu.NgayKetThucBaoHanh.ToString() : "") + " -> " + moi.NgayKetThucBaoHanh));
-			if (cu.TrangThai != moi.TrangThai)
-				log.Add(new LichSuSanPham(cu, 5, cu.TrangThai + " -> " + moi.TrangThai));
-			if (cu.GiaMua != moi.GiaMua)
-				log.Add(new LichSuSanPham(cu, 6, cu.GiaMua + " -> " + moi.GiaMua));
-			if (cu.GiaBan != moi.GiaBan)
-				log.Add(new LichSuSanPham(cu, 7, cu.GiaBan + " -> " + moi.GiaBan));
-			if (cu.GhiChu != moi.GhiChu)
-				log.Add(new LichSuSanPham(cu, 8, cu.GhiChu + " -> " + moi.GhiChu));
+			List<LICH_SU_SAN_PHAM> log = new List<LICH_SU_SAN_PHAM>();
+			if (cu.MA_CHI_TIET_SAN_PHAM != moi.MA_CHI_TIET_SAN_PHAM)
+				log.Add(new LICH_SU_SAN_PHAM(cu, Init.nhanVien.MSNV, 2, cu.MA_CHI_TIET_SAN_PHAM + " -> " + moi.MA_CHI_TIET_SAN_PHAM));
+			if (cu.NGAY_BAT_DAU_BAO_HANH != moi.NGAY_BAT_DAU_BAO_HANH)
+				log.Add(new LICH_SU_SAN_PHAM(cu, Init.nhanVien.MSNV, 3, (cu.NGAY_BAT_DAU_BAO_HANH != null? cu.NGAY_BAT_DAU_BAO_HANH.ToString():"") + " -> " + moi.NGAY_BAT_DAU_BAO_HANH));
+			if (cu.NGAY_KET_THUC_BAO_HANH != moi.NGAY_KET_THUC_BAO_HANH)
+				log.Add(new LICH_SU_SAN_PHAM(cu, Init.nhanVien.MSNV, 4, (cu.NGAY_KET_THUC_BAO_HANH != null ? cu.NGAY_KET_THUC_BAO_HANH.ToString() : "") + " -> " + moi.NGAY_KET_THUC_BAO_HANH));
+			if (cu.TRANG_THAI != moi.TRANG_THAI)
+				log.Add(new LICH_SU_SAN_PHAM(cu, Init.nhanVien.MSNV, 5, cu.TRANG_THAI + " -> " + moi.TRANG_THAI));
+			if (cu.GIA_MUA != moi.GIA_MUA)
+				log.Add(new LICH_SU_SAN_PHAM(cu, Init.nhanVien.MSNV, 6, cu.GIA_MUA + " -> " + moi.GIA_MUA));
+			if (cu.GIA_BAN != moi.GIA_BAN)
+				log.Add(new LICH_SU_SAN_PHAM(cu, Init.nhanVien.MSNV, 7, cu.GIA_BAN + " -> " + moi.GIA_BAN));
+			if (cu.GHI_CHU != moi.GHI_CHU)
+				log.Add(new LICH_SU_SAN_PHAM(cu, Init.nhanVien.MSNV, 8, cu.GHI_CHU + " -> " + moi.GHI_CHU));
 			moi.IMEI = cu.IMEI;
 			try
 			{
 				for (int i = 0; i < log.Count; i++)
 				{
-					LICH_SU_SAN_PHAM.insert((LICH_SU_SAN_PHAM)Util.AdapterObjectToDB(moi));
+					LICH_SU_SAN_PHAM.insert(log[i]);
 				}
 				return true;
 			}
@@ -67,49 +53,22 @@ namespace BUS.BusSanPham
 			}
 		}
 
-		public static bool GuiBaoHanh(SanPham sp)
+		public static bool GuiBaoHanh(SAN_PHAM sp)
 		{
-			if (sp.TrangThai == 2)
+			if (sp.TRANG_THAI == 2)
 				return false;
-			LichSuSanPham lssp = new LichSuSanPham(sp, 5, sp.TrangThai + " -> 2");
-			LICH_SU_SAN_PHAM.insert((LICH_SU_SAN_PHAM)Util.AdapterObjectToDB(lssp));
+			LICH_SU_SAN_PHAM lssp = new LICH_SU_SAN_PHAM(sp, Init.nhanVien.MSNV, 5, sp.TRANG_THAI + " -> 2");
+			LICH_SU_SAN_PHAM.insert(lssp);
 			return true;
 		}
 
-		public static bool NhanBaoHanh(SanPham sp)
+		public static bool NhanBaoHanh(SAN_PHAM sp)
 		{
-			if (sp.TrangThai == 1 || sp.TrangThai == 0)
+			if (sp.TRANG_THAI == 1 || sp.TRANG_THAI == 0)
 				return false;
-			LichSuSanPham lssp = new LichSuSanPham(sp, 5, sp.TrangThai + " -> 1");
-			LICH_SU_SAN_PHAM.insert((LICH_SU_SAN_PHAM)Util.AdapterObjectToDB(lssp));
+			LICH_SU_SAN_PHAM lssp = new LICH_SU_SAN_PHAM(sp, Init.nhanVien.MSNV, 5, sp.TRANG_THAI + " -> 1");
+			LICH_SU_SAN_PHAM.insert(lssp);
 			return true;
-		}
-
-
-		//	Get/Set accessor
-		public string IMEI
-		{
-			get; set;
-		}
-
-		public string GhiChu
-		{
-			get; set;
-		}
-
-		public DateTime ThoiGian
-		{
-			get; set;
-		}
-
-		public int MaLichSu
-		{
-			get; set;
-		}
-
-		public int MSNVThucHien
-		{
-			get; set;
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace BUS
 {
 	public class Util
 	{
+		/*
 		//	Convert Object to Database Record
 		public static object AdapterObjectToDB(object obj)
 		{
@@ -199,7 +200,7 @@ namespace BUS
 			//
 			return null;
 		}
-
+		*/
 		public static bool CompareTime(DateTime a, DateTime b) // <=
 		{
 			if (a.Year > b.Year)

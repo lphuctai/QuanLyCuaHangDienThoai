@@ -58,6 +58,30 @@
     <Compile Include="Cong\FormChamCong.Designer.cs">
       <DependentUpon>FormChamCong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cong\FormPhanCa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cong\FormPhanCa.Designer.cs">
+      <DependentUpon>FormPhanCa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cong\FormXacNhanCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cong\FormXacNhanCong.Designer.cs">
+      <DependentUpon>FormXacNhanCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cong\PanelCaLamViec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cong\PanelCaLamViec.Designer.cs">
+      <DependentUpon>PanelCaLamViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cong\PanelXacNhanCong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cong\PanelXacNhanCong.Designer.cs">
+      <DependentUpon>PanelXacNhanCong.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +117,18 @@
     <EmbeddedResource Include="Cong\FormChamCong.resx">
       <DependentUpon>FormChamCong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cong\FormPhanCa.resx">
+      <DependentUpon>FormPhanCa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cong\FormXacNhanCong.resx">
+      <DependentUpon>FormXacNhanCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cong\PanelCaLamViec.resx">
+      <DependentUpon>PanelCaLamViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cong\PanelXacNhanCong.resx">
+      <DependentUpon>PanelXacNhanCong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +150,9 @@
     </Compile>
     <EmbeddedResource Include="User\FormAddUser.resx">
       <DependentUpon>FormAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\FormSaThai.resx">
+      <DependentUpon>FormSaThai.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -146,10 +185,16 @@
     <None Include="Resources\btnExit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btnAddUser.bmp" />
+    <None Include="Resources\btnAddUser.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btnAddUser.png" />
+    <None Include="Resources\btnRemoveAccount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnSepCa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnXacNhanCa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

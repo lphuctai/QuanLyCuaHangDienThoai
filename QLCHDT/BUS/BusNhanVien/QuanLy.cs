@@ -12,47 +12,53 @@ namespace BUS.BusNhanVien
 {
 	public class QuanLy : NhanVien
 	{
-		public QuanLy(NHAN_VIEN nv)
-			:base(nv)
+		public QuanLy()
+			:base()
 		{
 		}
 
 		//	Create New Employee
-		public bool ThemNhanVien(NhanVien nv, string ghiChu)
+		public static bool ThemNhanVien(NHAN_VIEN nv, string ghiChu)
 		{
-			NHAN_VIEN tmp = (NHAN_VIEN)Util.AdapterObjectToDB(nv);
-			NHAN_VIEN.insert(tmp);
-			nv.MSNV = tmp.MSNV;
-			LichSuNhanVien.ThemNhanVien(nv, ghiChu);
-			return true;
+			try
+			{
+				int msnv = NHAN_VIEN.insert(nv);
+				LichSuNhanVien.ThemNhanVien(msnv, ghiChu);
+				return true;
+			}
+			catch(Exception)
+			{
+				return false;
+			}
 		}
 
 		//	Employee leave
-		public bool SaThaiNhanVien(NhanVien nv, string ghiChu)
+		public static bool SaThaiNhanVien(int msnv, string ghiChu)
 		{
-			LichSuNhanVien.SaThaiNhanVien(nv, ghiChu);
-			nv.TrangThai = 0;
-			NHAN_VIEN.update((NHAN_VIEN)Util.AdapterObjectToDB(nv));
+			LichSuNhanVien.SaThaiNhanVien(msnv, ghiChu);
+			NHAN_VIEN nv = NHAN_VIEN.select(" where MSNV = " + msnv)[0];
+			nv.TRANG_THAI = 0;
+			NHAN_VIEN.update(nv);
 			return true;
 		}
 		
-		public bool ThemCaLamViec(PhanCa pc)
+		public bool ThemCaLamViec(PHAN_CA pc)
 		{
 			return PhanCa.ThemCaLamViec(pc);
 		}
 
-		public bool XacNhanCaLamViec(PhanCa pc)
+		public bool XacNhanCaLamViec(PHAN_CA pc)
 		{
 			return PhanCa.XacNhanCaLamViec(pc);
 		}
 
-		public bool XoaCaLamViec(PhanCa pc)
+		public bool XoaCaLamViec(PHAN_CA pc)
 		{
 			return PhanCa.XoaCaLamViec(pc);
 		}
 
 		//	Not Finish
-		public bool ThemChiTietSanPham(ChiTietSanPham ctsp)
+		public bool ThemChiTietSanPham(CHI_TIET_SAN_PHAM ctsp)
 		{
 			return ChiTietSanPham.ThemChiTietSanPham(ctsp);
 		}

@@ -10,145 +10,81 @@ namespace BUS.BusSanPham
 	public class SanPham
 	{
 
-		public SanPham(string imei, int maChiTietSanPham)
+		public SanPham()
 		{
-			IMEI = imei;
-			MaChiTietSanPham = maChiTietSanPham;
-			TrangThai = 0;
 		}
 
-		public SanPham(SAN_PHAM dt)
+		public static bool ThanhToan(SAN_PHAM sp, string ghiChu)
 		{
-			IMEI = dt.IMEI;
-			GhiChu = dt.GHI_CHU;
-			MaChiTietSanPham = Convert.ToInt32(dt.MA_CHI_TIET_SAN_PHAM);
-			TrangThai = dt.TRANG_THAI;
-			GiaMua = Convert.ToInt32(dt.GIA_MUA);
-			GiaBan = Convert.ToInt32(dt.GIA_BAN);
-			NgayBatDauBaoHanh = Convert.ToDateTime(dt.NGAY_BAT_DAU_BAO_HANH);
-			NgayKetThucBaoHanh = Convert.ToDateTime(dt.NGAY_KET_THUC_BAO_HANG);
-		}
-
-		public bool ThayDoiGhiChu(string ghiChu)
-		{
-			this.GhiChu = ghiChu;
-			NHAN_VIEN.update((NHAN_VIEN)Util.AdapterObjectToDB(this));
-			return true;
-		}
-
-		public static bool ThanhToan(SanPham sp, string ghiChu)
-		{
-			if (sp.TrangThai == 1)
+			if (sp.TRANG_THAI == 1)
 				return false;
-			ChiTietSanPham ctsp;
+			CHI_TIET_SAN_PHAM ctsp;
             try
 			{
-				ctsp = new ChiTietSanPham(CHI_TIET_SAN_PHAM.select(" where MA_CHI_TIET_SAN_PHAM = " + sp.MaChiTietSanPham)[0]);
+				ctsp = CHI_TIET_SAN_PHAM.select(" where MA_CHI_TIET_SAN_PHAM = " + sp.MA_CHI_TIET_SAN_PHAM)[0];
 			}
 			catch(Exception)
 			{
 				return false;
 			}
-			SanPham tmp = sp;
+			SAN_PHAM tmp = sp;
 			// Doing
-			tmp.TrangThai = 1;
-			tmp.GhiChu = ghiChu;
-			tmp.GiaBan = ctsp.GiaBan;
-			tmp.GiaMua = ctsp.GiaMua;
-			tmp.NgayBatDauBaoHanh = DateTime.Now;
-			tmp.NgayKetThucBaoHanh = new DateTime(DateTime.Now.AddMonths(ctsp.ThoiGianBaoHanh).Year
-				, DateTime.Now.AddMonths(ctsp.ThoiGianBaoHanh).Month, DateTime.Now.Day);
+			tmp.TRANG_THAI = 1;
+			tmp.GHI_CHU = ghiChu;
+			tmp.GIA_BAN = ctsp.GIA_BAN;
+			tmp.GIA_BAN = ctsp.GIA_BAN;
+			tmp.NGAY_BAT_DAU_BAO_HANH = DateTime.Now;
+			tmp.NGAY_KET_THUC_BAO_HANH = new DateTime(DateTime.Now.AddMonths(Convert.ToInt32(ctsp.THOI_GIAN_BAO_HANH)).Year
+				, DateTime.Now.AddMonths(Convert.ToInt32(ctsp.THOI_GIAN_BAO_HANH)).Month, DateTime.Now.Day);
 
 			LichSuSanPham.ThanhToan(sp, tmp);
-			if (ChiTietSanPham.ThanhToan(ctsp.MaChiTietSanPham) == false)
+			if (ChiTietSanPham.ThanhToan(ctsp.MA_CHI_TIET_SAN_PHAM) == false)
 			{
 				LichSuSanPham.ThanhToan(tmp, sp);
 				return false;
 			}
-			SAN_PHAM.update((SAN_PHAM)Util.AdapterObjectToDB(tmp));
+			SAN_PHAM.update(tmp);
 			return true;
 		}
 
-		public static bool ThemSanPham(SanPham sp)
+		public static bool ThemSanPham(SAN_PHAM sp)
 		{
-			SanPham tmp = new SanPham(sp.IMEI, sp.MaChiTietSanPham);
-			LichSuSanPham.ThemSanPham(tmp, sp.GhiChu);
-			SAN_PHAM.insert((SAN_PHAM)Util.AdapterObjectToDB(tmp));
+			SAN_PHAM tmp = new SAN_PHAM(sp.IMEI, sp.MA_CHI_TIET_SAN_PHAM);
+			LichSuSanPham.ThemSanPham(tmp, sp.GHI_CHU);
+			SAN_PHAM.insert(tmp);
 			return true;
 		}
 
-		public static bool GuiBaoHanh(SanPham sp)
+		public static bool GuiBaoHanh(SAN_PHAM sp)
 		{
-			if (sp.TrangThai == 0 || sp.TrangThai == 2)
+			if (sp.TRANG_THAI == 0 || sp.TRANG_THAI == 2)
 				return false;
-			sp.TrangThai = 2;
+			sp.TRANG_THAI = 2;
 			LichSuSanPham.GuiBaoHanh(sp);
-			SAN_PHAM.update((SAN_PHAM)Util.AdapterObjectToDB(sp));
+			SAN_PHAM.update(sp);
 			return true;
 		}
 
-		public static bool NhanBaoHanh(SanPham sp)
+		public static bool NhanBaoHanh(SAN_PHAM sp)
 		{
-			if (sp.TrangThai == 0 || sp.TrangThai == 1)
+			if (sp.TRANG_THAI == 0 || sp.TRANG_THAI == 1)
 				return false;
-			sp.TrangThai = 1;
+			sp.TRANG_THAI = 1;
 			LichSuSanPham.NhanBaoHanh(sp);
-			SAN_PHAM.update((SAN_PHAM)Util.AdapterObjectToDB(sp));
+			SAN_PHAM.update(sp);
 			return true;
 		}
 
-		public static SanPham LaySanPham(string imei)
+		public static SAN_PHAM LaySanPham(string imei)
 		{
 			try
 			{
-				return new SanPham(SAN_PHAM.select(" where IMEI = " + imei)[0]);
+				return SAN_PHAM.select(" where IMEI = " + imei)[0];
 			}
 			catch(Exception)
 			{
 				return null;
 			}
-		}
-
-
-		//	Get/Set accessor
-		public string GhiChu
-		{
-			get; set;
-		}
-
-		public int GiaBan
-		{
-			get; set;
-		}
-
-		public int GiaMua
-		{
-			get; set;
-		}
-
-		public string IMEI
-		{
-			get; set;
-		}
-
-		public int MaChiTietSanPham
-		{
-			get; set;
-		}
-
-		public DateTime NgayBatDauBaoHanh
-		{
-			get; set;
-		}
-
-		public DateTime NgayKetThucBaoHanh
-		{
-			get; set;
-		}
-
-		public int TrangThai
-		{
-			get; set;
 		}
 	}
 }

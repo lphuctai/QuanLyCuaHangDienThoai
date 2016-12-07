@@ -9,52 +9,20 @@ namespace BUS.BusHoaDon
 {
 	public class ChiTietHoaDon
 	{
-		private int maHoaDon, gia;
-		private string imei, ghiChu;
-
-		public ChiTietHoaDon(CHI_TIET_HOA_DON cthd)
+		public ChiTietHoaDon()
 		{
-			this.maHoaDon = cthd.MA_HOA_DON;
-			this.gia = Convert.ToInt32(cthd.GIA);
-			this.imei = cthd.IMEI;
-			this.ghiChu = cthd.GHI_CHU;
 		}
 
-		public static bool NhapHang(ChiTietHoaDon cthd)
+		public static bool NhapHang(CHI_TIET_HOA_DON cthd)
 		{
-			CHI_TIET_HOA_DON.insert((CHI_TIET_HOA_DON)Util.AdapterObjectToDB(cthd));
+			CHI_TIET_HOA_DON.insert(cthd);
 			return true;
 		}
 
-		public static bool XuatHang(ChiTietHoaDon cthd)
+		public static bool XuatHang(CHI_TIET_HOA_DON cthd)
 		{
-			CHI_TIET_HOA_DON.insert((CHI_TIET_HOA_DON)Util.AdapterObjectToDB(cthd));
+			CHI_TIET_HOA_DON.insert(cthd);
 			return true;
-		}
-
-
-
-
-
-		//	Get/Set accessor
-		public int MaHoaDon
-		{
-			get; set;
-		}
-
-		public int Gia
-		{
-			get; set;
-		}
-
-		public string IMEI
-		{
-			get; set;
-		}
-
-		public string GhiChu
-		{
-			get; set;
 		}
 	}
 }

@@ -10,21 +10,21 @@ namespace BUS.BusDoiTac
 	public class DoiTacNhapHang
 	{
 
-		public static bool ThemDoiTac(DoiTacNhapHang dt)
+		public static bool ThemDoiTac(DOI_TAC_NHAP_HANG dt)
 		{
-			DOI_TAC_NHAP_HANG.insert((DOI_TAC_NHAP_HANG)Util.AdapterObjectToDB(dt));
+			DOI_TAC_NHAP_HANG.insert(dt);
 			return true;
 		}
 
-		public static bool SuaDoiTac(DoiTacNhapHang dt)
+		public static bool SuaDoiTac(DOI_TAC_NHAP_HANG dt)
 		{
-			DOI_TAC_NHAP_HANG.update((DOI_TAC_NHAP_HANG)Util.AdapterObjectToDB(dt));
+			DOI_TAC_NHAP_HANG.update(dt);
 			return true;
 		}
 		
-		public static bool XoaDoiTac(DoiTacNhapHang dt)
+		public static bool XoaDoiTac(DOI_TAC_NHAP_HANG dt)
 		{
-			DOI_TAC_NHAP_HANG.delete(dt.MaDoiTac);
+			DOI_TAC_NHAP_HANG.delete(dt.MA_DOI_TAC);
 			return true;
 		}
 

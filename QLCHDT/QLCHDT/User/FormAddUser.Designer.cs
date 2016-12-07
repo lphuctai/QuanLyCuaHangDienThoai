@@ -166,6 +166,7 @@
 			this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Name = "FormAddUser";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "FormAddUser";
 			this.Load += new System.EventHandler(this.FormAddUser_Load);
 			this.ResumeLayout(false);

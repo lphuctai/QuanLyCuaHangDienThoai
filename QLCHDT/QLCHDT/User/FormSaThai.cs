@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BUS;
+using BUS.BusNhanVien;
+using DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +18,31 @@ namespace QLCHDT.User
 		public FormSaThai()
 		{
 			InitializeComponent();
+		}
+
+		public static Bitmap getIcon()
+		{
+			return Properties.Resources.btnRemoveAccount;
+		}
+
+		private void FormSaThai_Load(object sender, EventArgs e)
+		{
+			BindingList<NHAN_VIEN> nv = new BindingList<NHAN_VIEN>(NhanVien.LayDanhSachNhanVien());
+			dgvNhanVien.DataSource = nv;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+            int msnv = ((NHAN_VIEN)dgvNhanVien.SelectedRows[0].DataBoundItem).MSNV;
+			if(QuanLy.SaThaiNhanVien(msnv, ""))
+			{
+				MessageBox.Show("Xoá Nhân Viên Thành Công!");
+				dgvNhanVien.Rows.RemoveAt(dgvNhanVien.CurrentRow.Index);
+			}
+			else
+			{
+				MessageBox.Show("Xoá Nhân Viên Thất Bại!");
+			}
 		}
 	}
 }

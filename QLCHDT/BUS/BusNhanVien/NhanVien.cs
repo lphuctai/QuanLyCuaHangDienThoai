@@ -11,31 +11,21 @@ namespace BUS.BusNhanVien
 	public abstract class NhanVien
 	{
 		//	Convert DB to Object
-		protected NhanVien(NHAN_VIEN nv)
+		protected NhanVien()
 		{
-			MSNV = nv.MSNV;
-			HoTen = nv.HO_TEN;
-			CMND = nv.CMND;
-			TrangThai = Convert.ToInt32(nv.TRANG_THAI);
-			SoDienThoai = nv.SO_DIEN_THOAI;
-			MatKhau = nv.MAT_KHAU;
-			NgaySinh = Convert.ToDateTime(nv.NGAY_SINH);
-			NgayVaoLam = Convert.ToDateTime(nv.NGAY_VAO_LAM);
 		}
 
 		//	Get Position of Employee
-		public int getChucVu()
+		public static int getChucVu(int user)
 		{
-			Type chucVu = this.GetType();
-			if (chucVu == typeof(QuanLy))
-				return 1;
-			if (chucVu == typeof(ThuNgan))
-				return 2;
-			if (chucVu == typeof(HoTroKyThuat))
-				return 3;
-			if (chucVu == typeof(TuVanBanHang))
-				return 4;
-			return 0;
+			try
+			{
+				return NHAN_VIEN.select(" where MSNV = " + user + " ")[0].MSNV;
+			}
+			catch(Exception)
+			{
+				return 0;
+			}
 		}
 
 		//	Create new object with exactly Employee
@@ -44,39 +34,39 @@ namespace BUS.BusNhanVien
 			switch ((int)nv.CHUC_VU)
 			{
 				case 1:
-					return new QuanLy(nv);
+					return new QuanLy();
 				case 2:
-					return new ThuNgan(nv);
+					return new ThuNgan();
 				case 3:
-					return new HoTroKyThuat(nv);
+					return new HoTroKyThuat();
 				case 4:
-					return new TuVanBanHang(nv);
+					return new TuVanBanHang();
 				default:
 					return null;
 			}
 		}
 
 		//	Change Infomation of Employee
-		public bool ThayDoiThongTin(NhanVien nv)
+		public bool ThayDoiThongTin(NHAN_VIEN nv)
 		{
 			if (Init.nhanVien.MSNV != nv.MSNV)
 				return false;
-			NhanVien nvCu;
+			NHAN_VIEN nvCu;
 			try
 			{
-				nvCu = NhanVienFactory(NHAN_VIEN.select(" where MSNV = " + nv.MSNV)[0]);
+				nvCu = NHAN_VIEN.select(" where MSNV = " + nv.MSNV)[0];
 			}
 			catch(Exception)
 			{
 				return false;
 			}
 			LichSuNhanVien.ThayDoiThongTin(nvCu, nv);
-			NHAN_VIEN.update((NHAN_VIEN)Util.AdapterObjectToDB(nv));
+			NHAN_VIEN.update(nv);
 			return true;
 		}
 
 		//	Timekeeping
-		public static bool ChamCongHangNgay(PhanCa pc)
+		public static bool ChamCongHangNgay(PHAN_CA pc)
 		{
 			//Cham Cong
 			return PhanCa.ChamCongHangNgay(pc);
@@ -96,7 +86,7 @@ namespace BUS.BusNhanVien
 			}
 			try
 			{
-				tmp = NHAN_VIEN.select(" where MSNV = " + user)[0];
+				tmp = NHAN_VIEN.select(" where MSNV = " + user + " and TRANG_THAI > 0 ")[0];
 			}
 			catch(Exception)
 			{
@@ -104,51 +94,15 @@ namespace BUS.BusNhanVien
 			}
             if (tmp != null && tmp.MAT_KHAU == matKhau)
 			{
-				Init.nhanVien = NhanVien.NhanVienFactory(tmp);
+				Init.nhanVien = tmp;
 				return true;
 			}
 			return false;
 		}
 
-		//	Get/Set accessor
-		public int MSNV
+		public static List<NHAN_VIEN> LayDanhSachNhanVien()
 		{
-			get; set;
-		}
-
-		public string HoTen
-		{
-			get; set;
-		}
-
-		public string CMND
-		{
-			get; set;
-		}
-
-		public DateTime NgaySinh
-		{
-			get; set;
-		}
-
-		public string SoDienThoai
-		{
-			get; set;
-		}
-
-		public string MatKhau
-		{
-			get; set;
-		}
-
-		public DateTime NgayVaoLam
-		{
-			get; set;
-		}
-
-		public int TrangThai
-		{
-			get; set;
+			return NHAN_VIEN.select(" where TRANG_THAI = 1 ");
 		}
 	}
 }

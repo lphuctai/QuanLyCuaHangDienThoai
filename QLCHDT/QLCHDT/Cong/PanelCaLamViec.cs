@@ -13,15 +13,19 @@ namespace QLCHDT.Cong
 {
 	public partial class PanelCaLamViec : UserControl
 	{
-		private List<CheckBox> cbb = new List<CheckBox>(); 
+		private List<CheckBox> cbb = new List<CheckBox>();
+		private int tongCa;
+		private NHAN_VIEN nhanVien;
+		private DateTime thoiGian;
 		public PanelCaLamViec()
 		{
 			InitializeComponent();
 		}
-		public PanelCaLamViec(NHAN_VIEN nv, int tongCa, List<PHAN_CA>pc)
+		public PanelCaLamViec(NHAN_VIEN nv, int tongCa, List<PHAN_CA>pc, DateTime thoiGian)
 		{
 			InitializeComponent();
-			lbHoTen.Text = nv.MSNV + "-" + nv.HO_TEN.Substring(nv.HO_TEN.IndexOf(' '));
+			this.tongCa = tongCa;
+			lbHoTen.Text = nv.MSNV + "-" + nv.HO_TEN.Substring(Math.Max(nv.HO_TEN.IndexOf(' '), 0));
 			int j = 0;
 			for(int i = 1; i <= tongCa; i ++)
 			{
@@ -35,20 +39,38 @@ namespace QLCHDT.Cong
 				tmp.TabIndex = 5;
 				tmp.Text = i.ToString();
 				tmp.UseVisualStyleBackColor = true;
-				if(i == pc[j].CA)
+				if (j < pc.Count && i == pc[j].CA)
 				{
 					tmp.Checked = true;
+					if (pc[j].CHAM_CONG == 1)
+						tmp.Enabled = false;
 					j++;
 				}
 				cbb.Add(tmp);
 				flowPanel.Controls.Add(cbb[i - 1]);
 			}
+			nhanVien = nv;
+			this.thoiGian = thoiGian;
 		}
 
-		private void AddCa(int tongCa)
+		public List<PHAN_CA> PhanCa
 		{
-
-			
+			get
+			{
+				List<PHAN_CA> pc = new List<PHAN_CA>();
+				for(int i = 0; i < tongCa; i ++)
+				{
+					if(cbb[i].Checked)
+					{
+						PHAN_CA tmp = new PHAN_CA();
+						tmp.MSNV = nhanVien.MSNV;
+						tmp.THOI_GIAN = thoiGian;
+						tmp.CA = Convert.ToInt32(cbb[i].Text);
+						pc.Add(tmp);
+					}					
+				}
+				return pc;
+			}
 		}
 	}
 }

@@ -11,11 +11,9 @@ namespace BUS.BusHoaDon
 	public class PhieuXuat : HoaDon
 	{
 
-		public PhieuXuat(HOA_DON hd)
-			:base(hd)
+		public PhieuXuat()
+			:base()
 		{
-			TongCong = Convert.ToInt32(hd.TONG_CONG);
-			ThongTinKhachHang = hd.THONG_TIN_KHACH_HANG;
 		}
 
 		public static int TaoPhieuXuat()
@@ -30,7 +28,7 @@ namespace BUS.BusHoaDon
 			return HOA_DON.insert(tmp);
 		}
 
-		public static bool XuatHang(int maHoaDon, List<SanPham> sps, List<ChiTietHoaDon> cthds)
+		public static bool XuatHang(int maHoaDon, List<SAN_PHAM> sps, List<CHI_TIET_HOA_DON> cthds)
 		{
 			HOA_DON tmp;
 			try
@@ -45,24 +43,13 @@ namespace BUS.BusHoaDon
 			for (int i = 0; i < sps.Count; i++)
 			{
 				SanPham.ThanhToan(sps[i], "");
-				cthds[i].MaHoaDon = tmp.MA_HOA_DON;
+				cthds[i].MA_HOA_DON = tmp.MA_HOA_DON;
 				ChiTietHoaDon.XuatHang(cthds[i]);
-				ChiTietSanPham.ThanhToan(sps[i].MaChiTietSanPham);
-				tongCong += cthds[i].Gia;
+				ChiTietSanPham.ThanhToan(sps[i].MA_CHI_TIET_SAN_PHAM);
+				tongCong += Convert.ToInt32(cthds[i].GIA);
 			}
 			HOA_DON.update(tmp);
 			return true;
-		}
-
-		//	Get/Set accessor
-		public int TongCong
-		{
-			get; set;
-		}
-
-		public string ThongTinKhachHang
-		{
-			get; set;
 		}
 	}
 }
