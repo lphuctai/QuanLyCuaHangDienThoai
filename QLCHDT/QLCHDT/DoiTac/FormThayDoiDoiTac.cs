@@ -1,0 +1,98 @@
+﻿using BUS.BusDoiTac;
+using DAO;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace QLCHDT.DoiTac
+{
+	public partial class FormThayDoiDoiTac : Form
+	{
+		public FormThayDoiDoiTac()
+		{
+			InitializeComponent();
+		}
+
+		public static Bitmap getIcon()
+		{
+			return Properties.Resources.btnThayDoiDoiTac;
+		}
+
+		private void ThayDoiDoiTac_Load(object sender, EventArgs e)
+		{
+			cbbMaDoiTac.DataSource = new BindingList<DOI_TAC_NHAP_HANG>(DOI_TAC_NHAP_HANG.select(""));
+			cbbMaDoiTac.DisplayMember = "DINH_DANH";
+			cbbMaDoiTac.ValueMember = "MA_DOI_TAC";
+			LoadDoiTac();
+        }
+
+		private void LoadDoiTac()
+		{
+			if (cbbMaDoiTac.SelectedValue == null)
+				return;
+			try
+			{
+				DOI_TAC_NHAP_HANG dtnh = DoiTacNhapHang.LayDoiTac(Convert.ToInt32(cbbMaDoiTac.SelectedValue));
+				txtDoiTac.Text = dtnh.THONG_TIN;
+				txtSoDienThoai.Text = dtnh.SO_DIEN_THOAI;
+			}
+			catch(Exception)
+			{
+				return;
+			}
+			
+		}
+
+		private void cbbMaDoiTac_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			LoadDoiTac();
+		}
+
+		private void btnSave_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				DOI_TAC_NHAP_HANG dtnh = DoiTacNhapHang.LayDoiTac(Convert.ToInt32(cbbMaDoiTac.SelectedValue));
+				dtnh.THONG_TIN = txtDoiTac.Text;
+                dtnh.SO_DIEN_THOAI = txtSoDienThoai.Text;
+				if (DoiTacNhapHang.SuaDoiTac(dtnh))
+					MessageBox.Show("Lưu Thành Công!");
+				else
+					MessageBox.Show("Lưu Thất Bại!");
+				int tmp = cbbMaDoiTac.SelectedIndex;
+				ThayDoiDoiTac_Load(sender, e);
+				cbbMaDoiTac.SelectedIndex = tmp;
+            }
+			catch (Exception)
+			{
+				return;
+			}
+		}
+
+		private void btnDelete_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				DOI_TAC_NHAP_HANG dtnh = DoiTacNhapHang.LayDoiTac(Convert.ToInt32(cbbMaDoiTac.SelectedValue));
+				if (DoiTacNhapHang.XoaDoiTac(dtnh))
+					MessageBox.Show("Xóa Thành Công!");
+				else
+					MessageBox.Show("Xóa Thất Bại!");
+				txtSoDienThoai.Text = "";
+				txtDoiTac.Text = "";
+				cbbMaDoiTac.Text = "";
+				ThayDoiDoiTac_Load(sender, e);
+			}
+			catch (Exception)
+			{
+				return;
+			}
+		}
+	}
+}

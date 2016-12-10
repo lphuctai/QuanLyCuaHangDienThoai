@@ -2,6 +2,7 @@
 using BUS.BusNhanVien;
 using DAO;
 using QLCHDT.Cong;
+using QLCHDT.FormSanPham;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

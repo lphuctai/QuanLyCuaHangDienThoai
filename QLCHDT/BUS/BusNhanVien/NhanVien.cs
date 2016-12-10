@@ -47,21 +47,12 @@ namespace BUS.BusNhanVien
 		}
 
 		//	Change Infomation of Employee
-		public bool ThayDoiThongTin(NHAN_VIEN nv)
+		public static bool ThayDoiThongTin(NHAN_VIEN nvCu, NHAN_VIEN nvMoi)
 		{
-			if (Init.nhanVien.MSNV != nv.MSNV)
+			if (nvMoi.MSNV != nvCu.MSNV)
 				return false;
-			NHAN_VIEN nvCu;
-			try
-			{
-				nvCu = NHAN_VIEN.select(" where MSNV = " + nv.MSNV)[0];
-			}
-			catch(Exception)
-			{
-				return false;
-			}
-			LichSuNhanVien.ThayDoiThongTin(nvCu, nv);
-			NHAN_VIEN.update(nv);
+			LichSuNhanVien.ThayDoiThongTin(nvCu, nvMoi);
+			NHAN_VIEN.update(nvMoi);
 			return true;
 		}
 
@@ -100,9 +91,21 @@ namespace BUS.BusNhanVien
 			return false;
 		}
 
-		public static List<NHAN_VIEN> LayDanhSachNhanVien()
+		public static List<NHAN_VIEN> LayNhanVien()
 		{
 			return NHAN_VIEN.select(" where TRANG_THAI = 1 ");
+		}
+
+		public static NHAN_VIEN LayNhanVien(int msnv)
+		{
+			try
+			{
+				return NHAN_VIEN.select(" where MSNV = " + msnv + " and TRANG_THAI = 1 ")[0];
+			}
+			catch(Exception)
+			{
+				return null;
+			}
 		}
 	}
 }

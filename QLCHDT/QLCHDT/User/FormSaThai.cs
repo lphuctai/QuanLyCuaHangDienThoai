@@ -27,7 +27,7 @@ namespace QLCHDT.User
 
 		private void FormSaThai_Load(object sender, EventArgs e)
 		{
-			BindingList<NHAN_VIEN> nv = new BindingList<NHAN_VIEN>(NhanVien.LayDanhSachNhanVien());
+			BindingList<NHAN_VIEN> nv = new BindingList<NHAN_VIEN>(NhanVien.LayNhanVien());
 			dgvNhanVien.DataSource = nv;
 		}
 

@@ -82,11 +82,35 @@
     <Compile Include="Cong\PanelXacNhanCong.Designer.cs">
       <DependentUpon>PanelXacNhanCong.cs</DependentUpon>
     </Compile>
+    <Compile Include="DoiTac\FormThemDoiTac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoiTac\FormThemDoiTac.Designer.cs">
+      <DependentUpon>FormThemDoiTac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DoiTac\FormThayDoiDoiTac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoiTac\FormThayDoiDoiTac.Designer.cs">
+      <DependentUpon>FormThayDoiDoiTac.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSanPham\FormBanHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSanPham\FormBanHang.Designer.cs">
+      <DependentUpon>FormBanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HR.Designer.cs">
+      <DependentUpon>HR.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -102,6 +126,48 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormSanPham\FormGuiBaoHanh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSanPham\FormGuiBaoHanh.Designer.cs">
+      <DependentUpon>FormGuiBaoHanh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSanPham\FormNhanBaoHanh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSanPham\FormNhanBaoHanh.Designer.cs">
+      <DependentUpon>FormNhanBaoHanh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSanPham\FormNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSanPham\FormNhapHang.Designer.cs">
+      <DependentUpon>FormNhapHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSanPham\FormQuanLyHangSanXuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSanPham\FormQuanLyHangSanXuat.Designer.cs">
+      <DependentUpon>FormQuanLyHangSanXuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSanPham\FormThayDoiChiTietSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSanPham\FormThayDoiChiTietSanPham.Designer.cs">
+      <DependentUpon>FormThayDoiChiTietSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSanPham\FormThemChiTietSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSanPham\FormThemChiTietSanPham.Designer.cs">
+      <DependentUpon>FormThemChiTietSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSanPham\PanelSanPham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormSanPham\PanelSanPham.Designer.cs">
+      <DependentUpon>PanelSanPham.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\FormAddUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +179,12 @@
     </Compile>
     <Compile Include="User\FormSaThai.Designer.cs">
       <DependentUpon>FormSaThai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\FormThayDoiThongTin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\FormThayDoiThongTin.Designer.cs">
+      <DependentUpon>FormThayDoiThongTin.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Cong\FormChamCong.resx">
       <DependentUpon>FormChamCong.cs</DependentUpon>
@@ -129,8 +201,20 @@
     <EmbeddedResource Include="Cong\PanelXacNhanCong.resx">
       <DependentUpon>PanelXacNhanCong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DoiTac\FormThemDoiTac.resx">
+      <DependentUpon>FormThemDoiTac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoiTac\FormThayDoiDoiTac.resx">
+      <DependentUpon>FormThayDoiDoiTac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSanPham\FormBanHang.resx">
+      <DependentUpon>FormBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HR.resx">
+      <DependentUpon>HR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -148,11 +232,35 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="FormSanPham\FormGuiBaoHanh.resx">
+      <DependentUpon>FormGuiBaoHanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSanPham\FormNhanBaoHanh.resx">
+      <DependentUpon>FormNhanBaoHanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSanPham\FormNhapHang.resx">
+      <DependentUpon>FormNhapHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSanPham\FormQuanLyHangSanXuat.resx">
+      <DependentUpon>FormQuanLyHangSanXuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSanPham\FormThayDoiChiTietSanPham.resx">
+      <DependentUpon>FormThayDoiChiTietSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSanPham\FormThemChiTietSanPham.resx">
+      <DependentUpon>FormThemChiTietSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSanPham\PanelSanPham.resx">
+      <DependentUpon>PanelSanPham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User\FormAddUser.resx">
       <DependentUpon>FormAddUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\FormSaThai.resx">
       <DependentUpon>FormSaThai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\FormThayDoiThongTin.resx">
+      <DependentUpon>FormThayDoiThongTin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -195,6 +303,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnXacNhanCa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnThayDoiThongTin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnThemDoiTac.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnThemSanPham.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnThayDoiDoiTac.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnHangSanXuat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnGuiBaoHanh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnNhanBaoHanh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

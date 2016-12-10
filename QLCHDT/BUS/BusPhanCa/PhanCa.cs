@@ -56,13 +56,13 @@ namespace BUS.BusPhanCa
 
 		//	Get Shift
 		public static List<PHAN_CA> LayCaLamViec(int msnv, DateTime thoiGianBatDau
-			, DateTime thoiGianKetThuc, bool chamCong, bool xacNhanCong)
+			, DateTime thoiGianKetThuc)
 		{
 			List<PHAN_CA> tmp = new List<PHAN_CA>(); ;
 			try
 			{
 				tmp = PHAN_CA.select(" where MSNV = " + msnv + " and THOI_GIAN >= '" + thoiGianBatDau.ToShortDateString() +
-										"' and THOI_GIAN <= '" + thoiGianKetThuc.ToShortDateString() + "' and CHAM_CONG = " + chamCong + " and XAC_NHAN_CONG = " + xacNhanCong + " ");
+										"' and THOI_GIAN <= '" + thoiGianKetThuc.ToShortDateString() + "' ");
 			}
 			catch(Exception)
 			{

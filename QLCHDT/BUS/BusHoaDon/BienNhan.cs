@@ -16,7 +16,7 @@ namespace BUS.BusHoaDon
 		{
 		}
 
-		public static int TaoBienNhan()
+		public static HOA_DON TaoBienNhan(string thongTinKhachHang)
 		{
 			HOA_DON tmp = new HOA_DON();
 			tmp.MA_HOA_DON = 0;
@@ -24,27 +24,18 @@ namespace BUS.BusHoaDon
 			tmp.LOAI_HOA_DON = 3;
 			tmp.TONG_CONG = 0;
 			tmp.THOI_GIAN = DateTime.Now;
+			tmp.MA_DOI_TAC = null;
 			tmp.MSNV_THUC_HIEN = Init.nhanVien.MSNV;
-			HOA_DON.insert(tmp);
-			return tmp.MA_HOA_DON;
+			tmp.THONG_TIN_KHACH_HANG = thongTinKhachHang;
+			return tmp;
 		}
 
-		private static bool GuiBaoHanh(int maHoaDon, SAN_PHAM sp, CHI_TIET_HOA_DON cthd)
+		public static int GuiBaoHanh(string imei, string thongTinKhachHang)
 		{
-			//wrong
-			HOA_DON tmp;
-			try
-			{
-				tmp = HOA_DON.select(" where MA_HOA_DON = " + maHoaDon)[0];
-			}
-			catch(Exception)
-			{
-				return false;
-			}
-			cthd.MA_HOA_DON = tmp.MA_HOA_DON;
-			ChiTietHoaDon.NhapHang(cthd);
-			HOA_DON.update(tmp);
-			return true;
+			HOA_DON hd = TaoBienNhan(thongTinKhachHang);
+			int maHoaDon = HOA_DON.insert(hd);
+			SanPham.GuiBaoHanh(imei);
+			return maHoaDon;
 		}
 
 		private static bool NhanBaoHanh(int maHoaDon)

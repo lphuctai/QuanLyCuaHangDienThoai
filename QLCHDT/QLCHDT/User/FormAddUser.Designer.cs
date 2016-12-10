@@ -47,7 +47,7 @@
 			this.txtHoTen.Location = new System.Drawing.Point(169, 28);
 			this.txtHoTen.Name = "txtHoTen";
 			this.txtHoTen.Size = new System.Drawing.Size(266, 29);
-			this.txtHoTen.TabIndex = 0;
+			this.txtHoTen.TabIndex = 5;
 			// 
 			// lbHoTen
 			// 
@@ -95,7 +95,7 @@
 			this.txtSoDienThoai.Location = new System.Drawing.Point(169, 187);
 			this.txtSoDienThoai.Name = "txtSoDienThoai";
 			this.txtSoDienThoai.Size = new System.Drawing.Size(266, 29);
-			this.txtSoDienThoai.TabIndex = 6;
+			this.txtSoDienThoai.TabIndex = 20;
 			// 
 			// lbCMND
 			// 
@@ -113,7 +113,7 @@
 			this.txtCMND.Location = new System.Drawing.Point(169, 81);
 			this.txtCMND.Name = "txtCMND";
 			this.txtCMND.Size = new System.Drawing.Size(266, 29);
-			this.txtCMND.TabIndex = 8;
+			this.txtCMND.TabIndex = 10;
 			// 
 			// dtpNgaySinh
 			// 
@@ -121,7 +121,7 @@
 			this.dtpNgaySinh.Location = new System.Drawing.Point(169, 131);
 			this.dtpNgaySinh.Name = "dtpNgaySinh";
 			this.dtpNgaySinh.Size = new System.Drawing.Size(266, 29);
-			this.dtpNgaySinh.TabIndex = 12;
+			this.dtpNgaySinh.TabIndex = 15;
 			// 
 			// cbbChucVu
 			// 
@@ -130,7 +130,7 @@
 			this.cbbChucVu.Location = new System.Drawing.Point(169, 240);
 			this.cbbChucVu.Name = "cbbChucVu";
 			this.cbbChucVu.Size = new System.Drawing.Size(266, 29);
-			this.cbbChucVu.TabIndex = 13;
+			this.cbbChucVu.TabIndex = 25;
 			// 
 			// btnThemNguoiDung
 			// 
@@ -141,7 +141,7 @@
 			this.btnThemNguoiDung.Location = new System.Drawing.Point(0, 300);
 			this.btnThemNguoiDung.Name = "btnThemNguoiDung";
 			this.btnThemNguoiDung.Size = new System.Drawing.Size(480, 33);
-			this.btnThemNguoiDung.TabIndex = 15;
+			this.btnThemNguoiDung.TabIndex = 30;
 			this.btnThemNguoiDung.Text = "Thêm Người Dùng";
 			this.btnThemNguoiDung.UseVisualStyleBackColor = true;
 			this.btnThemNguoiDung.Click += new System.EventHandler(this.btnThemNguoiDung_Click);

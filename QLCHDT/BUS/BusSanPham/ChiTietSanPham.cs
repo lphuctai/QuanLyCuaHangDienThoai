@@ -28,36 +28,48 @@ namespace BUS.BusSanPham
 
 		public static bool ThemSanPham(int mactsp)
 		{
-			CHI_TIET_SAN_PHAM ctsp;
+			return false;
+		}
+
+		public static List<CHI_TIET_SAN_PHAM> LayChiTietSanPham()
+		{
+			return CHI_TIET_SAN_PHAM.select(" ");
+		}
+
+		public static CHI_TIET_SAN_PHAM LayChiTietSanPham(int maChiTietSanPham)
+		{
 			try
 			{
-				ctsp = CHI_TIET_SAN_PHAM.select(" where MA_CHI_TIET_SAN_PHAM = " + mactsp)[0];
+				return CHI_TIET_SAN_PHAM.select(" where MA_CHI_TIET_SAN_PHAM = " + maChiTietSanPham + " ")[0];
 			}
-			catch
+			catch(Exception)
 			{
-				return false;
+				return null;
 			}
-			ctsp.CON_TON++;
-			CHI_TIET_SAN_PHAM.update(ctsp);
+		}
+
+		public static CHI_TIET_SAN_PHAM LayChiTietSanPham(int maHang, string dongSanPham, string soHieu, string tenSanPham)
+		{
+			try
+			{
+				return CHI_TIET_SAN_PHAM.select(" where MA_HANG = " + maHang + " and DONG_SAN_PHAM = '" + dongSanPham + "' and SO_HIEU_SAN_PHAM = '" 
+					+ soHieu + "' and TEN_SAN_PHAM = '" + tenSanPham + "' ")[0];
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		public static bool XoaChiTietSanPham(int ma)
+		{
+			CHI_TIET_SAN_PHAM.delete(ma);
 			return true;
 		}
 
 		public static bool ThanhToan(int mactsp)
 		{
-			CHI_TIET_SAN_PHAM ctsp;
-			try
-			{
-				ctsp = CHI_TIET_SAN_PHAM.select(" where MA_CHI_TIET_SAN_PHAM = " + mactsp)[0];
-			}
-			catch
-			{
-				return false;
-			}
-			if (ctsp.CON_TON <= 0)
-				return false;
-			ctsp.CON_TON--;
-			CHI_TIET_SAN_PHAM.update(ctsp);
-			return true;
+			return false;
 		}
 	}
 }

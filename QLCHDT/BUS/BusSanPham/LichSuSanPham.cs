@@ -55,8 +55,6 @@ namespace BUS.BusSanPham
 
 		public static bool GuiBaoHanh(SAN_PHAM sp)
 		{
-			if (sp.TRANG_THAI == 2)
-				return false;
 			LICH_SU_SAN_PHAM lssp = new LICH_SU_SAN_PHAM(sp, Init.nhanVien.MSNV, 5, sp.TRANG_THAI + " -> 2");
 			LICH_SU_SAN_PHAM.insert(lssp);
 			return true;
@@ -64,8 +62,6 @@ namespace BUS.BusSanPham
 
 		public static bool NhanBaoHanh(SAN_PHAM sp)
 		{
-			if (sp.TRANG_THAI == 1 || sp.TRANG_THAI == 0)
-				return false;
 			LICH_SU_SAN_PHAM lssp = new LICH_SU_SAN_PHAM(sp, Init.nhanVien.MSNV, 5, sp.TRANG_THAI + " -> 1");
 			LICH_SU_SAN_PHAM.insert(lssp);
 			return true;

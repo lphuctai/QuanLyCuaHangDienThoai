@@ -93,6 +93,36 @@ namespace QLCHDT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap btnGuiBaoHanh {
+            get {
+                object obj = ResourceManager.GetObject("btnGuiBaoHanh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap btnHangSanXuat {
+            get {
+                object obj = ResourceManager.GetObject("btnHangSanXuat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap btnNhanBaoHanh {
+            get {
+                object obj = ResourceManager.GetObject("btnNhanBaoHanh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap btnRemoveAccount {
             get {
                 object obj = ResourceManager.GetObject("btnRemoveAccount", resourceCulture);
@@ -106,6 +136,46 @@ namespace QLCHDT.Properties {
         public static System.Drawing.Bitmap btnSepCa {
             get {
                 object obj = ResourceManager.GetObject("btnSepCa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap btnThayDoiDoiTac {
+            get {
+                object obj = ResourceManager.GetObject("btnThayDoiDoiTac", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap btnThayDoiThongTin {
+            get {
+                object obj = ResourceManager.GetObject("btnThayDoiThongTin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap btnThemDoiTac {
+            get {
+                object obj = ResourceManager.GetObject("btnThemDoiTac", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap btnThemSanPham {
+            get {
+                object obj = ResourceManager.GetObject("btnThemSanPham", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

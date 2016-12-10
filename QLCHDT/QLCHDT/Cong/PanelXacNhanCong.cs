@@ -7,35 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BUS.BusPhanCa;
 using DAO;
+using BUS.BusPhanCa;
 
 namespace QLCHDT.Cong
 {
-	public partial class PanelCong : UserControl
+	public partial class PanelXacNhanCong : UserControl
 	{
 		PHAN_CA pc;
-		public PanelCong(PHAN_CA pc)
+		public PanelXacNhanCong()
+		{
+			InitializeComponent();
+		}
+
+		private void btnXacNhan_Click(object sender, EventArgs e)
+		{
+			PhanCa.XacNhanCaLamViec(pc);
+			KhoaTrangThai();
+		}
+
+		public PanelXacNhanCong(PHAN_CA pc)
 		{
 			InitializeComponent();
 			this.pc = pc;
-			lbCong.Text = "Ca " + pc.CA;
-			if(pc.CHAM_CONG == 1)
+			lbCong.Text = pc.THOI_GIAN.Date + "Ca " + pc.CA;
+			if (pc.XAC_NHAN_CONG == 1)
 			{
 				KhoaTrangThai();
 			}
 		}
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-			PhanCa.ChamCongHangNgay(pc);
-			KhoaTrangThai();
-        }
-
 		private void KhoaTrangThai()
 		{
-			btnCong.Enabled = false;
-			btnCong.Text = "Đã Chấm";
+			btnXacNhan.Enabled = false;
+			btnXacNhan.Text = "Đã Xác Nhận";
 			this.BackColor = Color.Gray;
 		}
 	}

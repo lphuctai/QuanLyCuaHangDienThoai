@@ -19,5 +19,35 @@ namespace BUS.BusSanPham
 			HANG_SAN_XUAT.insert(hsx);
             return true;
 		}
+
+		public static List<HANG_SAN_XUAT> LayHangSanXuat()
+		{
+			return HANG_SAN_XUAT.select(" ");
+		}
+
+		public static HANG_SAN_XUAT LayHangSanXuat(string hang)
+		{
+			try
+			{
+				return HANG_SAN_XUAT.select(" where HANG = '" + hang + "' ")[0];
+			}
+			catch(Exception)
+			{
+				return null;
+			}
+		}
+		
+		public static HANG_SAN_XUAT LayHangSanXuat(int maHang)
+		{
+			try
+			{
+				return HANG_SAN_XUAT.select(" where MA_HANG = '" + maHang + "' ")[0];
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
 	}
 }

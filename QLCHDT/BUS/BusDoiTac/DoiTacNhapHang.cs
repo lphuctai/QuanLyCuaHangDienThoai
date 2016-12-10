@@ -28,24 +28,21 @@ namespace BUS.BusDoiTac
 			return true;
 		}
 
-		public int MaDoiTac
+		public static List<DOI_TAC_NHAP_HANG> LayDoiTac()
 		{
-			get; set;
+			return DOI_TAC_NHAP_HANG.select(" ");
 		}
 
-		public int MSNVQuanLy
+		public static DOI_TAC_NHAP_HANG LayDoiTac(int maDoiTac)
 		{
-			get; set;
-		}
-
-		public string SoDienThoai
-		{
-			get; set;
-		}
-
-		public string ThongTin
-		{
-			get; set;
+			try
+			{
+				return DOI_TAC_NHAP_HANG.select(" where MA_DOI_TAC = " + maDoiTac + " ")[0];
+			}
+			catch(Exception)
+			{
+				return null; 
+			}
 		}
 	}
 }

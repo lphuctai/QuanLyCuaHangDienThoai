@@ -1,4 +1,6 @@
 ﻿using QLCHDT.Cong;
+using QLCHDT.DoiTac;
+using QLCHDT.FormSanPham;
 using QLCHDT.User;
 using System;
 using System.Collections.Generic;
@@ -17,12 +19,64 @@ namespace QLCHDT
 		public MainForm(int chucVu)
 		{
 			InitializeComponent();
+			AddHR("Tiện Ích");
+			AddButton("Chấm Công", FormChamCong.getIcon());
+			AddButton("Thay Đổi Thông Tin", FormThayDoiThongTin.getIcon());
 			if(chucVu == 1) //QL
 			{
-				AddButton("Chấm Công", FormChamCong.getIcon());
+				AddHR("Nhân Sự");
 				AddButton("Thêm NV", FormAddUser.getIcon());
 				AddButton("Xoá NV", FormSaThai.getIcon());
+				AddHR("Phân Ca");
 				AddButton("Phân Ca", FormPhanCa.getIcon());
+				AddButton("Xác Nhận Ca", FormXacNhanCong.getIcon());
+				AddHR("Đối Tác");
+				AddButton("Thêm Đối Tác", FormThemDoiTac.getIcon());
+				AddButton("Thay Đổi Đối Tác", FormThayDoiDoiTac.getIcon());
+				AddHR("Sản Phẩm");
+				AddButton("Hãng Sản Xuất", FormQuanLyHangSanXuat.getIcon());
+				AddButton("Nhập Hàng", FormNhapHang.getIcon());
+				AddHR();
+
+			}
+			if (chucVu == 2) //TN
+			{
+			}
+
+			if (chucVu == 3) //HTKT
+			{
+				AddButton("Nhận Bảo Hành", FormNhanBaoHanh.getIcon());
+			}
+		}
+
+		private void btnSelected(object sender, EventArgs e)
+		{
+			Button tmp = (Button)sender;
+			switch (tmp.Text)
+			{
+				case "Chấm Công":
+					new FormChamCong().ShowDialog(); break;
+				case "Thêm NV":
+					new FormAddUser().ShowDialog(); break;
+				case "Xoá NV":
+					new FormSaThai().ShowDialog(); break;
+				case "Phân Ca":
+					new FormPhanCa().ShowDialog(); break;
+				case "Xác Nhận Ca":
+					new FormXacNhanCong().ShowDialog(); break;
+				case "Thay Đổi Thông Tin":
+					new FormThayDoiThongTin().ShowDialog(); break;
+				case "Thêm Đối Tác":
+					new FormThemDoiTac().ShowDialog(); break;
+				case "Thay Đổi Đối Tác":
+					new FormThayDoiDoiTac().ShowDialog(); break;
+				case "Hãng Sản Xuất":
+					new FormQuanLyHangSanXuat().ShowDialog(); break;
+				case "Nhập Hàng":
+					new FormNhapHang().ShowDialog(); break;
+				case "Nhận Bảo Hành":
+					new FormNhanBaoHanh().ShowDialog(); break;
+
 			}
 		}
 
@@ -45,30 +99,19 @@ namespace QLCHDT
 			this.FlowPanel.Controls.Add(tmp);
 		}
 
+		public void AddHR()
+		{
+			this.FlowPanel.Controls.Add(new HR());
+		}
+
+		public void AddHR(string text)
+		{
+			this.FlowPanel.Controls.Add(new HR(text));
+		}
+
 		private void btnExit_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
-		}
-
-		private void btnSelected(object sender, EventArgs e)
-		{
-			Button tmp = (Button)sender;
-			switch(tmp.Text)
-			{
-				case "Chấm Công":
-                    new FormChamCong().ShowDialog();
-					break;
-				case "Thêm NV":
-					new FormAddUser().ShowDialog();
-					break;
-				case "Xoá NV":
-					new FormSaThai().ShowDialog();
-					break;
-				case "Phân Ca":
-					new FormPhanCa().ShowDialog();
-					break;
-
-			}
 		}
 	}
 }

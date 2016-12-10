@@ -34,6 +34,7 @@
 			// 
 			// FlowPanel
 			// 
+			this.FlowPanel.AutoScroll = true;
 			this.FlowPanel.Location = new System.Drawing.Point(12, 12);
 			this.FlowPanel.Name = "FlowPanel";
 			this.FlowPanel.Padding = new System.Windows.Forms.Padding(20);

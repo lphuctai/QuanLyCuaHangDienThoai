@@ -14,6 +14,18 @@ namespace BUS.BusSanPham
 		{
 		}
 
+		public static SAN_PHAM TimSanPham(string imei)
+		{
+			try
+			{
+				return SAN_PHAM.select(" where IMEI = '" + imei + "' ")[0];
+			}
+			catch(Exception)
+			{
+				return null;
+			}
+		}
+
 		public static bool ThanhToan(SAN_PHAM sp, string ghiChu)
 		{
 			if (sp.TRANG_THAI == 1)
@@ -47,17 +59,25 @@ namespace BUS.BusSanPham
 			return true;
 		}
 
+		public static bool KiemTraDanhSachSanPham(List<string> imei)
+		{
+			bool result = true;
+			for (int i = 0; i < imei.Count; i++)
+				result &= (LaySanPham(imei[i]) == null);
+			return result;
+		}
+
 		public static bool ThemSanPham(SAN_PHAM sp)
 		{
-			SAN_PHAM tmp = new SAN_PHAM(sp.IMEI, sp.MA_CHI_TIET_SAN_PHAM);
-			LichSuSanPham.ThemSanPham(tmp, sp.GHI_CHU);
-			SAN_PHAM.insert(tmp);
+			SAN_PHAM.insert(sp);
+			LichSuSanPham.ThemSanPham(sp, sp.GHI_CHU);
 			return true;
 		}
 
-		public static bool GuiBaoHanh(SAN_PHAM sp)
+		public static bool GuiBaoHanh(string imei)
 		{
-			if (sp.TRANG_THAI == 0 || sp.TRANG_THAI == 2)
+			SAN_PHAM sp = LaySanPham(imei);
+			if (sp == null || sp.TRANG_THAI == 0 || sp.TRANG_THAI == 2)
 				return false;
 			sp.TRANG_THAI = 2;
 			LichSuSanPham.GuiBaoHanh(sp);
