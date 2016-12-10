@@ -19,6 +19,11 @@ namespace QLCHDT.FormSanPham
 			InitializeComponent();
 		}
 
+		public static Bitmap getIcon()
+		{
+			return Properties.Resources.btnThemChiTietSanPham;
+		}
+
 		private void FormThemChiTietSanPham_Load(object sender, EventArgs e)
 		{
 			cbbHangSanXuat.DataSource = new BindingList<HANG_SAN_XUAT>(HangSanXuat.LayHangSanXuat());

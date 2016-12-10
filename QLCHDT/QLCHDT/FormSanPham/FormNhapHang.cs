@@ -54,14 +54,19 @@ namespace QLCHDT.FormSanPham
 			kh.THOI_GIAN = DateTime.Now;
 			kh.GIA_MUA = Convert.ToInt32(txtGiaMua.Text);
 			kh.SO_LUONG = Convert.ToInt32(txtSoLuong.Text);
-			kh.CON_LAI = 0;
+			kh.CON_LAI = Convert.ToInt32(txtSoLuong.Text); ;
 			kh.MSNV_THUC_HIEN = Init.nhanVien.MSNV;
 			List<string> imei = new List<string>();
 			for (int i = 0; i < flowPanel.Controls.Count; i++)
 				imei.Add(((PanelSanPham)flowPanel.Controls[i]).getString());
 			int maHoaDon = PhieuNhap.NhapHang(kh, imei);
             if (maHoaDon != 0)
+			{
 				MessageBox.Show("Nhập Hàng Thành Công!\nMã Hóa Đơn Là: " + maHoaDon);
+				for (int i = 0; i < flowPanel.Controls.Count; i++)
+					flowPanel.Controls[i].Dispose();
+				flowPanel.Controls.Clear();
+			}
 			else
 				MessageBox.Show("Nhập Hàng Thất Bại!");
 		}

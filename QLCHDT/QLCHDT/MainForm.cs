@@ -22,7 +22,8 @@ namespace QLCHDT
 			AddHR("Tiện Ích");
 			AddButton("Chấm Công", FormChamCong.getIcon());
 			AddButton("Thay Đổi Thông Tin", FormThayDoiThongTin.getIcon());
-			if(chucVu == 1) //QL
+			AddButton("Kiểm Tra Tồn", FormKiemTraHangTon.getIcon());
+			if (chucVu == 1) //QL
 			{
 				AddHR("Nhân Sự");
 				AddButton("Thêm NV", FormAddUser.getIcon());
@@ -34,6 +35,8 @@ namespace QLCHDT
 				AddButton("Thêm Đối Tác", FormThemDoiTac.getIcon());
 				AddButton("Thay Đổi Đối Tác", FormThayDoiDoiTac.getIcon());
 				AddHR("Sản Phẩm");
+				AddButton("Thêm Chi Tiết Sản Phẩm", FormThemChiTietSanPham.getIcon());
+				AddButton("Thay Đổi Chi Tiết Sản Phẩm", FormThayDoiChiTietSanPham.getIcon());
 				AddButton("Hãng Sản Xuất", FormQuanLyHangSanXuat.getIcon());
 				AddButton("Nhập Hàng", FormNhapHang.getIcon());
 				AddHR();
@@ -43,7 +46,7 @@ namespace QLCHDT
 			{
 			}
 
-			if (chucVu == 3) //HTKT
+			if (chucVu == 1) //HTKT
 			{
 				AddButton("Nhận Bảo Hành", FormNhanBaoHanh.getIcon());
 				AddButton("Trả Bảo Hành", FormTraBaoHanh.getIcon());
@@ -82,6 +85,12 @@ namespace QLCHDT
 					new FormBanHang().ShowDialog(); break;
 				case "Trả Bảo Hành":
 					new FormTraBaoHanh().ShowDialog(); break;
+				case "Kiểm Tra Tồn":
+					new FormKiemTraHangTon().ShowDialog(); break;
+				case "Thêm Chi Tiết Sản Phẩm":
+					new FormThemChiTietSanPham().ShowDialog(); break;
+				case "Thay Đổi Chi Tiết Sản Phẩm":
+					new FormThayDoiChiTietSanPham().ShowDialog(); break;
 
 			}
 		}

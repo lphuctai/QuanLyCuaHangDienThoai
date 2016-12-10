@@ -34,14 +34,13 @@ namespace BUS.BusHoaDon
 		{
 			HOA_DON hd = TaoBienNhan(thongTinKhachHang);
 			int maHoaDon = HOA_DON.insert(hd);
-			ChiTietHoaDon.NhapHang(maHoaDon, imei);
+			ChiTietHoaDon.NhapHang(maHoaDon, imei, 0);
 			SanPham.GuiBaoHanh(imei);
 			return maHoaDon;
 		}
 
 		public static HOA_DON LayBienNhan(int maHoaDon)
 		{
-			return HOA_DON.select(" where MA_HOA_DON = " + maHoaDon + " and LOAI_HOA_DON = 3 ")[0];
 			try
 			{
 				return HOA_DON.select(" where MA_HOA_DON = " + maHoaDon + " and LOAI_HOA_DON = 3 ")[0];

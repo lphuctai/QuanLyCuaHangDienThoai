@@ -23,6 +23,11 @@ namespace QLCHDT.FormSanPham
 			LoadThongTin();
 		}
 
+		public static Bitmap getIcon()
+		{
+			return Properties.Resources.btnThayDoiThongTin;
+		}
+
 		private void FormThayDoiChiTietSanPham_Load(object sender, EventArgs e)
 		{
 			dgvChiTietSanPham.DataSource = new BindingList<CHI_TIET_SAN_PHAM>(ChiTietSanPham.LayChiTietSanPham());

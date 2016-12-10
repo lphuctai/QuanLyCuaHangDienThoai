@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BUS.BusSanPham
 {
-	class KhoHang
+	public class KhoHang
 	{
 		public static bool LuuKho(KHO_HANG kh, List<string> imei)
 		{
@@ -44,6 +44,15 @@ namespace BUS.BusSanPham
 			{
 				return null;
 			}
+		}
+
+		public static int GetTonKho(int maChiTietSanPham)
+		{
+			List<KHO_HANG> khs = KHO_HANG.select(" where MA_CHI_TIET_SAN_PHAM = " + maChiTietSanPham + " ");
+			int tongCong = 0;
+			for (int i = 0; i < khs.Count; i++)
+				tongCong += khs[i].CON_LAI;
+			return tongCong;
 		}
 	}
 }

@@ -123,6 +123,16 @@ namespace QLCHDT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap btnKiemTraHangTon {
+            get {
+                object obj = ResourceManager.GetObject("btnKiemTraHangTon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap btnNhanBaoHanh {
             get {
                 object obj = ResourceManager.GetObject("btnNhanBaoHanh", resourceCulture);
@@ -166,6 +176,16 @@ namespace QLCHDT.Properties {
         public static System.Drawing.Bitmap btnThayDoiThongTin {
             get {
                 object obj = ResourceManager.GetObject("btnThayDoiThongTin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap btnThemChiTietSanPham {
+            get {
+                object obj = ResourceManager.GetObject("btnThemChiTietSanPham", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -13,10 +13,10 @@ namespace BUS.BusHoaDon
 		{
 		}
 
-		public static bool NhapHang(int maHoaDon, string imei)
+		public static bool NhapHang(int maHoaDon, string imei, int gia)
 		{
 			CHI_TIET_HOA_DON tmp = new CHI_TIET_HOA_DON();
-			tmp.GIA = 0;
+			tmp.GIA = gia;
 			tmp.MA_HOA_DON = maHoaDon;
 			tmp.IMEI = imei;
 			CHI_TIET_HOA_DON.insert(tmp);
