@@ -16,7 +16,7 @@ namespace BUS.BusHoaDon
 		{
 		}
 
-		public static int TaoPhieuXuat()
+		public static HOA_DON TaoPhieuXuat(string thonTinKhachHang)
 		{
 			HOA_DON tmp = new HOA_DON();
 			tmp.MA_HOA_DON = 0;
@@ -25,31 +25,23 @@ namespace BUS.BusHoaDon
 			tmp.TONG_CONG = 0;
 			tmp.THOI_GIAN = DateTime.Now;
 			tmp.MSNV_THUC_HIEN = Init.nhanVien.MSNV;
-			return HOA_DON.insert(tmp);
+			tmp.THONG_TIN_KHACH_HANG = thonTinKhachHang;
+			return tmp;
 		}
 
-		public static bool XuatHang(int maHoaDon, List<SAN_PHAM> sps, List<CHI_TIET_HOA_DON> cthds)
+		public static int ThanhToan(string thongTinKhachHang, List<SAN_PHAM> imei)
 		{
-			HOA_DON tmp;
-			try
+			List<SAN_PHAM> xacThuc = new List<SAN_PHAM>();
+			int tongCong = SanPham.LayTongCong(imei);
+			HOA_DON hd = TaoPhieuXuat(thongTinKhachHang);
+			hd.TONG_CONG = tongCong;
+			int maHoaDon = HOA_DON.insert(hd);
+			for(int i = 0; i < imei.Count; i ++)
 			{
-				tmp = HOA_DON.select(" where MA_HOA_DON = " + maHoaDon)[0];
+				SAN_PHAM sp = KhoHang.XuatKho(imei[i]);
+				ChiTietHoaDon.XuatHang(maHoaDon, sp);
 			}
-			catch (Exception)
-			{
-				return false;
-			}
-			int tongCong = 0;
-			for (int i = 0; i < sps.Count; i++)
-			{
-				SanPham.ThanhToan(sps[i], "");
-				cthds[i].MA_HOA_DON = tmp.MA_HOA_DON;
-				ChiTietHoaDon.XuatHang(cthds[i]);
-				ChiTietSanPham.ThanhToan(sps[i].MA_CHI_TIET_SAN_PHAM);
-				tongCong += Convert.ToInt32(cthds[i].GIA);
-			}
-			HOA_DON.update(tmp);
-			return true;
+			return maHoaDon;
 		}
 	}
 }

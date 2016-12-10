@@ -30,13 +30,14 @@
 		{
 			this.flowPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.btnThemSanPham = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.txtThongTinKhachHang = new System.Windows.Forms.TextBox();
 			this.txtTongCong = new System.Windows.Forms.TextBox();
 			this.txtIMEI = new System.Windows.Forms.TextBox();
 			this.lbDanhSachSanPham = new System.Windows.Forms.Label();
 			this.lbTongCong = new System.Windows.Forms.Label();
 			this.lbThemSanPham = new System.Windows.Forms.Label();
 			this.lbThongTinKhachHang = new System.Windows.Forms.Label();
+			this.btnThanhToan = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// flowPanel
@@ -44,8 +45,10 @@
 			this.flowPanel.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.flowPanel.Location = new System.Drawing.Point(50, 337);
 			this.flowPanel.Name = "flowPanel";
-			this.flowPanel.Size = new System.Drawing.Size(709, 274);
+			this.flowPanel.Size = new System.Drawing.Size(706, 232);
 			this.flowPanel.TabIndex = 13;
+			this.flowPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flowPanel_ControlAdded);
+			this.flowPanel.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.flowPanel_ControlRemoved);
 			// 
 			// btnThemSanPham
 			// 
@@ -53,21 +56,22 @@
 			this.btnThemSanPham.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnThemSanPham.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 			this.btnThemSanPham.ForeColor = System.Drawing.Color.White;
-			this.btnThemSanPham.Location = new System.Drawing.Point(660, 36);
+			this.btnThemSanPham.Location = new System.Drawing.Point(611, 36);
 			this.btnThemSanPham.Name = "btnThemSanPham";
 			this.btnThemSanPham.Size = new System.Drawing.Size(145, 33);
 			this.btnThemSanPham.TabIndex = 12;
 			this.btnThemSanPham.Text = "Thêm Sản Phẩm";
 			this.btnThemSanPham.UseVisualStyleBackColor = true;
+			this.btnThemSanPham.Click += new System.EventHandler(this.btnThemSanPham_Click);
 			// 
-			// textBox1
+			// txtThongTinKhachHang
 			// 
-			this.textBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			this.textBox1.Location = new System.Drawing.Point(50, 119);
-			this.textBox1.Multiline = true;
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(755, 125);
-			this.textBox1.TabIndex = 9;
+			this.txtThongTinKhachHang.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+			this.txtThongTinKhachHang.Location = new System.Drawing.Point(50, 119);
+			this.txtThongTinKhachHang.Multiline = true;
+			this.txtThongTinKhachHang.Name = "txtThongTinKhachHang";
+			this.txtThongTinKhachHang.Size = new System.Drawing.Size(706, 125);
+			this.txtThongTinKhachHang.TabIndex = 9;
 			// 
 			// txtTongCong
 			// 
@@ -83,7 +87,7 @@
 			this.txtIMEI.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
 			this.txtIMEI.Location = new System.Drawing.Point(186, 39);
 			this.txtIMEI.Name = "txtIMEI";
-			this.txtIMEI.Size = new System.Drawing.Size(455, 29);
+			this.txtIMEI.Size = new System.Drawing.Size(403, 29);
 			this.txtIMEI.TabIndex = 11;
 			// 
 			// lbDanhSachSanPham
@@ -130,15 +134,30 @@
 			this.lbThongTinKhachHang.TabIndex = 8;
 			this.lbThongTinKhachHang.Text = "Thông Tin Khách Hàng";
 			// 
+			// btnThanhToan
+			// 
+			this.btnThanhToan.AutoSize = true;
+			this.btnThanhToan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnThanhToan.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+			this.btnThanhToan.ForeColor = System.Drawing.Color.White;
+			this.btnThanhToan.Location = new System.Drawing.Point(611, 261);
+			this.btnThanhToan.Name = "btnThanhToan";
+			this.btnThanhToan.Size = new System.Drawing.Size(145, 33);
+			this.btnThanhToan.TabIndex = 12;
+			this.btnThanhToan.Text = "Thanh Toán";
+			this.btnThanhToan.UseVisualStyleBackColor = true;
+			this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
+			// 
 			// FormBanHang
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.ClientSize = new System.Drawing.Size(848, 647);
+			this.ClientSize = new System.Drawing.Size(786, 587);
 			this.Controls.Add(this.flowPanel);
+			this.Controls.Add(this.btnThanhToan);
 			this.Controls.Add(this.btnThemSanPham);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.txtThongTinKhachHang);
 			this.Controls.Add(this.txtTongCong);
 			this.Controls.Add(this.txtIMEI);
 			this.Controls.Add(this.lbDanhSachSanPham);
@@ -156,12 +175,13 @@
 
 		private System.Windows.Forms.FlowLayoutPanel flowPanel;
 		private System.Windows.Forms.Button btnThemSanPham;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox txtThongTinKhachHang;
 		private System.Windows.Forms.TextBox txtTongCong;
 		private System.Windows.Forms.TextBox txtIMEI;
 		private System.Windows.Forms.Label lbDanhSachSanPham;
 		private System.Windows.Forms.Label lbTongCong;
 		private System.Windows.Forms.Label lbThemSanPham;
 		private System.Windows.Forms.Label lbThongTinKhachHang;
+		private System.Windows.Forms.Button btnThanhToan;
 	}
 }

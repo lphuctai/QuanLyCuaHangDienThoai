@@ -35,6 +35,8 @@ namespace BUS.BusHoaDon
 				return 0;
 			HOA_DON hd = TaoPhieuNhap(kh.MA_DOI_TAC, kh.SO_LUONG * kh.GIA_MUA);
 			int maHoaDon = HOA_DON.insert(hd);
+			for (int i = 0; i < imei.Count; i++)
+				ChiTietHoaDon.NhapHang(maHoaDon, imei[i]);
 			KhoHang.LuuKho(kh, imei);
 			return maHoaDon;
 		}

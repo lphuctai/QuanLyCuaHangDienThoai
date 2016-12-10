@@ -24,5 +24,26 @@ namespace BUS.BusSanPham
 			}
 			return true;
 		}
+
+		public static SAN_PHAM XuatKho(SAN_PHAM imei) // Return Gia Mua Vao
+		{
+			KHO_HANG kh = KhoHang.LayKhoHang(imei.MA_KHO);
+			kh.CON_LAI--;
+			KHO_HANG.update(kh);
+			imei.GIA_MUA = kh.GIA_MUA;
+			return SanPham.ThanhToan(imei);
+		}
+
+		public static KHO_HANG LayKhoHang(int maKho)
+		{
+			try
+			{
+				return KHO_HANG.select(" where MA_KHO = " + maKho + " ")[0];
+			}
+			catch(Exception)
+			{
+				return null;
+			}
+		}
 	}
 }

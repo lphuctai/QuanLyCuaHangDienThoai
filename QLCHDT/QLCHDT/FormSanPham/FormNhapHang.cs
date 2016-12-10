@@ -69,9 +69,10 @@ namespace QLCHDT.FormSanPham
 		private void btnThemSanPham_Click(object sender, EventArgs e)
 		{
 			string imei = txtIMEI.Text;
+			SAN_PHAM sp = new SAN_PHAM(imei, 0);
 			if (imei.Length > 0)
 			{
-				flowPanel.Controls.Add(new PanelSanPham(imei));
+				flowPanel.Controls.Add(new PanelSanPham(sp));
 				txtIMEI.Text = "";
 			}
 			else

@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAO;
+using BUS.BusSanPham;
 
 namespace QLCHDT.FormSanPham
 {
 	public partial class PanelSanPham : UserControl
 	{
-		public PanelSanPham(string s)
+		int gia = 0;
+		SAN_PHAM sp;
+		public PanelSanPham(SAN_PHAM sp)
 		{
 			InitializeComponent();
-			lbIMEI.Text = s;
+			this.sp = sp;
+			lbIMEI.Text = sp.IMEI;
 		}
 
 		private void btnXoa_Click(object sender, EventArgs e)
@@ -25,7 +30,21 @@ namespace QLCHDT.FormSanPham
 
 		public string getString()
 		{
-			return lbIMEI.Text;
+			return sp.IMEI;
+		}
+
+		public SAN_PHAM getSanPham()
+		{
+			return sp;
+		}
+
+		public int getGia()
+		{
+			if(gia == 0)
+			{
+				gia = ChiTietSanPham.LayChiTietSanPham(sp.MA_CHI_TIET_SAN_PHAM).GIA_BAN;
+			}
+			return gia;
 		}
 	}
 }

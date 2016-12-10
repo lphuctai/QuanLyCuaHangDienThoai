@@ -13,15 +13,35 @@ namespace BUS.BusHoaDon
 		{
 		}
 
-		public static bool NhapHang(CHI_TIET_HOA_DON cthd)
+		public static bool NhapHang(int maHoaDon, string imei)
 		{
-			CHI_TIET_HOA_DON.insert(cthd);
+			CHI_TIET_HOA_DON tmp = new CHI_TIET_HOA_DON();
+			tmp.GIA = 0;
+			tmp.MA_HOA_DON = maHoaDon;
+			tmp.IMEI = imei;
+			CHI_TIET_HOA_DON.insert(tmp);
 			return true;
 		}
 
-		public static bool XuatHang(CHI_TIET_HOA_DON cthd)
+		public static List<CHI_TIET_HOA_DON> LayChiTietHoaDon(int maHoaDon)
 		{
-			CHI_TIET_HOA_DON.insert(cthd);
+			try
+			{
+				return CHI_TIET_HOA_DON.select(" where MA_HOA_DON = " + maHoaDon + " ");
+			}
+			catch(Exception)
+			{
+				return null;
+			}
+		}
+
+		public static bool XuatHang(int maHoaDon, SAN_PHAM sp)
+		{
+			CHI_TIET_HOA_DON tmp = new CHI_TIET_HOA_DON();
+			tmp.GIA = sp.GIA_BAN;
+			tmp.MA_HOA_DON = maHoaDon;
+			tmp.IMEI = sp.IMEI;
+			CHI_TIET_HOA_DON.insert(tmp);
 			return true;
 		}
 	}

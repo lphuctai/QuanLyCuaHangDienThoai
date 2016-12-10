@@ -46,6 +46,8 @@ namespace QLCHDT
 			if (chucVu == 3) //HTKT
 			{
 				AddButton("Nhận Bảo Hành", FormNhanBaoHanh.getIcon());
+				AddButton("Trả Bảo Hành", FormTraBaoHanh.getIcon());
+				AddButton("Bán Hàng", FormBanHang.getIcon());
 			}
 		}
 
@@ -76,6 +78,10 @@ namespace QLCHDT
 					new FormNhapHang().ShowDialog(); break;
 				case "Nhận Bảo Hành":
 					new FormNhanBaoHanh().ShowDialog(); break;
+				case "Bán Hàng":
+					new FormBanHang().ShowDialog(); break;
+				case "Trả Bảo Hành":
+					new FormTraBaoHanh().ShowDialog(); break;
 
 			}
 		}
