@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusHoaDon\ChiTietHoaDon.cs" />
+    <Compile Include="BusPhanCa\Luong.cs" />
     <Compile Include="BusSanPham\ChiTietSanPham.cs" />
     <Compile Include="BusSanPham\HangSanXuat.cs" />
     <Compile Include="BusSanPham\KhoHang.cs" />
@@ -62,7 +63,6 @@
     <Compile Include="Init.cs" />
     <Compile Include="BusNhanVien\HoTroKyThuat.cs" />
     <Compile Include="BusNhanVien\LichSuNhanVien.cs" />
-    <Compile Include="BusNhanVien\Luong.cs" />
     <Compile Include="BusNhanVien\NhanVien.cs" />
     <Compile Include="BusNhanVien\QuanLy.cs" />
     <Compile Include="BusNhanVien\ThuNgan.cs" />

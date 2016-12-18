@@ -43,5 +43,20 @@ namespace BUS.BusHoaDon
 			}
 			return maHoaDon;
 		}
+
+		public static List<HOA_DON> LayPhieuXuat(DateTime ngayBatDau, DateTime ngayKetThuc)
+		{
+			List<HOA_DON> px = HOA_DON.select(" where LOAI_HOA_DON = 2 and THOI_GIAN >= '" + ngayBatDau + "' and THOI_GIAN < '" + ngayKetThuc + "' ");
+			return px;
+		}
+
+		public static int TongDoanhThu(DateTime ngayBatDau, DateTime ngayKetThuc)
+		{
+			List<HOA_DON> doanhThu = PhieuXuat.LayPhieuXuat(ngayBatDau, ngayKetThuc);
+			int tong = 0;
+			for (int i = 0; i < doanhThu.Count; i++)
+				tong += Convert.ToInt32(doanhThu[i].TONG_CONG);
+			return tong;
+		}
 	}
 }

@@ -77,7 +77,27 @@ namespace BUS.BusPhanCa
 		//	Get Shift
 		public static List<PHAN_CA> LayCaLamViec(int msnv, DateTime thoiGian)
 		{
-			return PHAN_CA.select(" where MSNV = " + msnv + " and THOI_GIAN = '" + thoiGian + "' order by MSNV, CA");
+			return PHAN_CA.select(" where MSNV = " + msnv + " and THOI_GIAN = '" + thoiGian.ToShortDateString() + "' order by MSNV, CA");
+		}
+
+		public static int TongGioCong(int msnv, DateTime batDau, DateTime ketThuc, int chamCong, int xacNhanCong)
+		{
+			List<PHAN_CA> pc = PhanCa.LayCaLamViec(msnv, batDau, ketThuc);
+			int gioCong = 0;
+			for (int j = 0; j < pc.Count; j++)
+				if (pc[j].CHAM_CONG == chamCong && pc[j].XAC_NHAN_CONG == xacNhanCong)
+					gioCong += CaLamViec.LayGioCong(pc[j].CA);
+			return gioCong;
+		}
+
+		public static int TongGioCong(DateTime batDau, DateTime ketThuc)
+		{
+			List<PHAN_CA> ls = PHAN_CA.select(" where THOI_GIAN >= '" + batDau.ToShortDateString() + "' and THOI_GIAN <= '" + ketThuc.ToShortDateString() + "' ");
+			int count = 0;
+			for (int i = 0;  i < ls.Count; i ++)
+				if (ls[i].CHAM_CONG == 1)
+					count += CaLamViec.LayGioCong(ls[i].CA);
+			return count;
 		}
 	}
 }

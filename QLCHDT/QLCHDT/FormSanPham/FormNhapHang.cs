@@ -21,10 +21,30 @@ namespace QLCHDT.FormSanPham
 		{
 			InitializeComponent();
 		}
-
-		public static Bitmap getIcon()
+		
+		public static Button getButton()
 		{
-			return Properties.Resources.btnThemSanPham;
+			System.Windows.Forms.Button tmp = new System.Windows.Forms.Button();
+			tmp.Text = "Nhập Hàng";
+			tmp.Image = Properties.Resources.btnThemSanPham;
+			tmp.AutoSize = true;
+			tmp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			tmp.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+			tmp.ForeColor = System.Drawing.Color.White;
+			tmp.Location = new System.Drawing.Point(23, 23);
+			tmp.Size = new System.Drawing.Size(120, 120);
+			tmp.Margin = new System.Windows.Forms.Padding(10);
+			tmp.TabIndex = 0;
+			tmp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			tmp.UseVisualStyleBackColor = false;
+			tmp.Click += new System.EventHandler(btnSelected);
+			return tmp;
+		}
+
+		private static void btnSelected(object sender, EventArgs e)
+		{
+			FormNhapHang formNhapHang = new FormNhapHang();
+			formNhapHang.ShowDialog();
 		}
 
 		private void FormNhapHang_Load(object sender, EventArgs e)
@@ -35,6 +55,17 @@ namespace QLCHDT.FormSanPham
 			cbbChiTietSanPham.DataSource = new BindingList<CHI_TIET_SAN_PHAM>(ChiTietSanPham.LayChiTietSanPham());
 			cbbChiTietSanPham.DisplayMember = "DINH_DANH";
 			cbbChiTietSanPham.ValueMember = "MA_CHI_TIET_SAN_PHAM";
+			try
+			{
+				int soLuong = Convert.ToInt32(txtSoLuong.Text);
+				int count = flowPanel.Controls.Count;
+				Console.WriteLine(soLuong + " " + count);
+				btnThemSanPham.Enabled = (count < soLuong);
+			}
+			catch (Exception)
+			{
+
+			}
 		}
 
 		private void btnLuu_Click(object sender, EventArgs e)
@@ -77,11 +108,70 @@ namespace QLCHDT.FormSanPham
 			SAN_PHAM sp = new SAN_PHAM(imei, 0);
 			if (imei.Length > 0)
 			{
-				flowPanel.Controls.Add(new PanelSanPham(sp));
-				txtIMEI.Text = "";
+				if (SanPham.LaySanPham(imei) == null)
+				{
+					for(int i = 0; i < flowPanel.Controls.Count; i ++)
+					{
+						PanelSanPham tmp = (PanelSanPham)flowPanel.Controls[i];
+						if(tmp.getString() == imei)
+						{
+							MessageBox.Show("IMEI bị trùng rồi, bạn hãy nhập lại.");
+							return;
+						}
+					}
+					flowPanel.Controls.Add(new PanelSanPham(sp));
+					txtIMEI.Text = "";
+				}
+				else
+					MessageBox.Show("IMEI bị trùng rồi, bạn hãy nhập lại.");
 			}
 			else
 				MessageBox.Show("Error!");
+		}
+
+		private void flowPanel_ControlAdded(object sender, ControlEventArgs e)
+		{
+			try
+			{
+				int soLuong = Convert.ToInt32(txtSoLuong.Text);
+				int count = flowPanel.Controls.Count;
+				Console.WriteLine(soLuong + " " + count);
+				btnThemSanPham.Enabled = (count < soLuong);
+			}
+			catch (Exception)
+			{
+
+			}
+		}
+
+		private void flowPanel_ControlRemoved(object sender, ControlEventArgs e)
+		{
+			try
+			{
+				int soLuong = Convert.ToInt32(txtSoLuong.Text);
+				int count = flowPanel.Controls.Count;
+				Console.WriteLine(soLuong + " " + count);
+				btnThemSanPham.Enabled = (count < soLuong);
+			}
+			catch (Exception)
+			{
+
+			}
+		}
+
+		private void txtSoLuong_TextChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				int soLuong = Convert.ToInt32(txtSoLuong.Text);
+				int count = flowPanel.Controls.Count;
+				Console.WriteLine(soLuong + " " + count);
+				btnThemSanPham.Enabled = (count < soLuong);
+			}
+			catch (Exception)
+			{
+
+			}
 		}
 	}
 }

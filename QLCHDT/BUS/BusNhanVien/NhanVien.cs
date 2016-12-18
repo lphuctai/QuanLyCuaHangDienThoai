@@ -91,6 +91,18 @@ namespace BUS.BusNhanVien
 			return false;
 		}
 
+		public static string LayHoTen(int MSNV)
+		{
+			try
+			{
+				return NHAN_VIEN.select(" where MSNV = " + MSNV + " ")[0].HO_TEN;
+			}
+			catch(Exception)
+			{
+				return "";
+			}
+		}
+
 		public static List<NHAN_VIEN> LayNhanVien()
 		{
 			return NHAN_VIEN.select(" where TRANG_THAI = 1 ");

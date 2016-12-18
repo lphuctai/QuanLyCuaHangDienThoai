@@ -20,9 +20,29 @@ namespace QLCHDT.Cong
 			InitializeComponent();
 		}
 
-		public static Bitmap getIcon()
+		public static Button getButton()
 		{
-			return Properties.Resources.btnXacNhanCa;
+			System.Windows.Forms.Button tmp = new System.Windows.Forms.Button();
+			tmp.Text = "X.Nhận Công";
+			tmp.Image = Properties.Resources.btnXacNhanCa;
+			tmp.AutoSize = true;
+			tmp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			tmp.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+			tmp.ForeColor = System.Drawing.Color.White;
+			tmp.Location = new System.Drawing.Point(23, 23);
+			tmp.Size = new System.Drawing.Size(120, 120);
+			tmp.Margin = new System.Windows.Forms.Padding(10);
+			tmp.TabIndex = 0;
+			tmp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			tmp.UseVisualStyleBackColor = false;
+			tmp.Click += new System.EventHandler(btnSelected);
+			return tmp;
+		}
+
+		private static void btnSelected(object sender, EventArgs e)
+		{
+			FormXacNhanCong formXacNhanCong = new FormXacNhanCong();
+			formXacNhanCong.ShowDialog();
 		}
 
 		private void FormXacNhanCong_Load(object sender, EventArgs e)
@@ -41,7 +61,8 @@ namespace QLCHDT.Cong
 			List<PHAN_CA> pc = PhanCa.LayCaLamViec(msnv, tu, den);
 			for (int i = 0; i < pc.Count; i++)
 			{
-				flowPanel.Controls.Add(new PanelXacNhanCong(pc[i]));
+				if(pc[i].CHAM_CONG == 1)
+					flowPanel.Controls.Add(new PanelXacNhanCong(pc[i]));
 			}
 		}
 

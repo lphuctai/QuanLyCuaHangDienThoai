@@ -30,7 +30,7 @@ namespace QLCHDT.Cong
 		{
 			InitializeComponent();
 			this.pc = pc;
-			lbCong.Text = pc.THOI_GIAN.Date + "Ca " + pc.CA;
+			lbCong.Text = "Ca " + pc.CA + " " + pc.THOI_GIAN.Date.ToShortDateString();
 			if (pc.XAC_NHAN_CONG == 1)
 			{
 				KhoaTrangThai();

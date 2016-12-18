@@ -24,15 +24,15 @@ namespace QLCHDT
 		static void Main()
 		{
 			CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
-			culture.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd hh:mm:ss";
-			culture.DateTimeFormat.LongTimePattern = "";
+			culture.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd";
+			culture.DateTimeFormat.LongTimePattern = "HH:mm:ss";
 			Thread.CurrentThread.CurrentCulture = culture;
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			FormLogin formLogin = new FormLogin();
 			Application.Run(formLogin);
-
-
+			//Application.Run(new FormThongKe());
 		}
 	}
 }

@@ -98,6 +98,8 @@
 			this.flowPanel.Name = "flowPanel";
 			this.flowPanel.Size = new System.Drawing.Size(709, 274);
 			this.flowPanel.TabIndex = 4;
+			this.flowPanel.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.flowPanel_ControlAdded);
+			this.flowPanel.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.flowPanel_ControlRemoved);
 			// 
 			// txtIMEI
 			// 
@@ -138,6 +140,7 @@
 			this.txtSoLuong.Size = new System.Drawing.Size(246, 29);
 			this.txtSoLuong.TabIndex = 2;
 			this.txtSoLuong.Text = "0";
+			this.txtSoLuong.TextChanged += new System.EventHandler(this.txtSoLuong_TextChanged);
 			// 
 			// lbSoLuong
 			// 

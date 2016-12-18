@@ -18,17 +18,17 @@ namespace BUS.BusNhanVien
 		}
 
 		//	Create New Employee
-		public static bool ThemNhanVien(NHAN_VIEN nv, string ghiChu)
+		public static int ThemNhanVien(NHAN_VIEN nv, string ghiChu)
 		{
 			try
 			{
 				int msnv = NHAN_VIEN.insert(nv);
 				LichSuNhanVien.ThemNhanVien(msnv, ghiChu);
-				return true;
+				return msnv;
 			}
 			catch(Exception)
 			{
-				return false;
+				return 0;
 			}
 		}
 

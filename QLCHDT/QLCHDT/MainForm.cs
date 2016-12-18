@@ -19,99 +19,50 @@ namespace QLCHDT
 		public MainForm(int chucVu)
 		{
 			InitializeComponent();
-			AddHR("Tiện Ích");
-			AddButton("Chấm Công", FormChamCong.getIcon());
-			AddButton("Thay Đổi Thông Tin", FormThayDoiThongTin.getIcon());
-			AddButton("Kiểm Tra Tồn", FormKiemTraHangTon.getIcon());
+			AddHR("Tư Vấn Bán Hàng");
+			AddButton(FormChamCong.getButton());
+			AddButton(FormBanHang.getButton());
+			AddButton(FormThayDoiThongTin.getButton());
+			AddButton(FormKiemTraHangTon.getButton());
 			if (chucVu == 1) //QL
 			{
 				AddHR("Nhân Sự");
-				AddButton("Thêm NV", FormAddUser.getIcon());
-				AddButton("Xoá NV", FormSaThai.getIcon());
-				AddHR("Phân Ca");
-				AddButton("Phân Ca", FormPhanCa.getIcon());
-				AddButton("Xác Nhận Ca", FormXacNhanCong.getIcon());
+				AddButton(FormAddUser.getButton());
+				AddButton(FormSaThai.getButton());
+				AddButton(FormPhanCa.getButton());
+				AddButton(FormXacNhanCong.getButton());
+				AddButton(FormLuong.getButton());
 				AddHR("Đối Tác");
-				AddButton("Thêm Đối Tác", FormThemDoiTac.getIcon());
-				AddButton("Thay Đổi Đối Tác", FormThayDoiDoiTac.getIcon());
-				AddHR("Sản Phẩm");
-				AddButton("Thêm Chi Tiết Sản Phẩm", FormThemChiTietSanPham.getIcon());
-				AddButton("Thay Đổi Chi Tiết Sản Phẩm", FormThayDoiChiTietSanPham.getIcon());
-				AddButton("Hãng Sản Xuất", FormQuanLyHangSanXuat.getIcon());
-				AddButton("Nhập Hàng", FormNhapHang.getIcon());
-				AddHR();
+				AddButton(FormThemDoiTac.getButton());
+				AddButton(FormThayDoiDoiTac.getButton());
+				AddHR("Quản Lý Sản Phẩm");
+				AddButton(FormThemChiTietSanPham.getButton());
+				AddButton(FormThayDoiChiTietSanPham.getButton());
+				AddButton(FormQuanLyHangSanXuat.getButton());
+				AddButton(FormNhapHang.getButton());
+				AddButton(FormThongKe.getButton());
 
 			}
+			else
 			if (chucVu == 2) //TN
 			{
+				AddHR("Thu Ngân");
+				AddButton(FormThayDoiChiTietSanPham.getButton());
+				AddButton(FormThongKe.getButton());
 			}
-
-			if (chucVu == 1) //HTKT
+			else
+			if (chucVu == 3) //HTKT
 			{
-				AddButton("Nhận Bảo Hành", FormNhanBaoHanh.getIcon());
-				AddButton("Trả Bảo Hành", FormTraBaoHanh.getIcon());
-				AddButton("Bán Hàng", FormBanHang.getIcon());
+				AddHR("Hỗ Trợ Kỹ Thuật");
+				AddButton(FormNhanBaoHanh.getButton());
+				AddButton(FormTraBaoHanh.getButton());
 			}
+			AddHR();
 		}
 
-		private void btnSelected(object sender, EventArgs e)
+		public void AddButton(Button btn)
 		{
-			Button tmp = (Button)sender;
-			switch (tmp.Text)
-			{
-				case "Chấm Công":
-					new FormChamCong().ShowDialog(); break;
-				case "Thêm NV":
-					new FormAddUser().ShowDialog(); break;
-				case "Xoá NV":
-					new FormSaThai().ShowDialog(); break;
-				case "Phân Ca":
-					new FormPhanCa().ShowDialog(); break;
-				case "Xác Nhận Ca":
-					new FormXacNhanCong().ShowDialog(); break;
-				case "Thay Đổi Thông Tin":
-					new FormThayDoiThongTin().ShowDialog(); break;
-				case "Thêm Đối Tác":
-					new FormThemDoiTac().ShowDialog(); break;
-				case "Thay Đổi Đối Tác":
-					new FormThayDoiDoiTac().ShowDialog(); break;
-				case "Hãng Sản Xuất":
-					new FormQuanLyHangSanXuat().ShowDialog(); break;
-				case "Nhập Hàng":
-					new FormNhapHang().ShowDialog(); break;
-				case "Nhận Bảo Hành":
-					new FormNhanBaoHanh().ShowDialog(); break;
-				case "Bán Hàng":
-					new FormBanHang().ShowDialog(); break;
-				case "Trả Bảo Hành":
-					new FormTraBaoHanh().ShowDialog(); break;
-				case "Kiểm Tra Tồn":
-					new FormKiemTraHangTon().ShowDialog(); break;
-				case "Thêm Chi Tiết Sản Phẩm":
-					new FormThemChiTietSanPham().ShowDialog(); break;
-				case "Thay Đổi Chi Tiết Sản Phẩm":
-					new FormThayDoiChiTietSanPham().ShowDialog(); break;
-
-			}
-		}
-
-		public void AddButton(string text, System.Drawing.Bitmap icon)
-		{
-			System.Windows.Forms.Button tmp = new System.Windows.Forms.Button();
-			tmp.AutoSize = true;
-			tmp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			tmp.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-			tmp.ForeColor = System.Drawing.Color.White;
-			tmp.Image = icon;
-			tmp.Location = new System.Drawing.Point(23, 23);
-			tmp.Size = new System.Drawing.Size(120, 120);
-			tmp.Margin = new System.Windows.Forms.Padding(10);
-			tmp.TabIndex = 0;
-			tmp.Text = text;
-			tmp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			tmp.UseVisualStyleBackColor = false;
-			tmp.Click += new System.EventHandler(this.btnSelected);
-			this.FlowPanel.Controls.Add(tmp);
+			this.FlowPanel.Controls.Add(btn);
 		}
 
 		public void AddHR()
